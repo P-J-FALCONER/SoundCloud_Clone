@@ -1,4 +1,4 @@
-angular.module('auth')
+angular.module('soundcloud')
   .controller('authCtrl', ['$scope', 'authFactory', '$location', function($scope, authFactory, $location){
     $scope.isLoggedIn = authFactory.isLoggedIn();
 
@@ -6,7 +6,7 @@ angular.module('auth')
 
     $scope.register = function(){
       authFactory.register({
-        username: $scope.username
+        username: $scope.username,
         email: $scope.email,
         password: $scope.password
       }).then(function(user){

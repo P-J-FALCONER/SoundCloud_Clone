@@ -3,7 +3,7 @@ angular.module('soundcloud', ['ngRoute', 'ngMessages']);
 angular.module('soundcloud').config(function($routeProvider){
   $routeProvider
     .when('/', {
-      templateUrl: './views/auth.html',
+      templateUrl: './templates/auth.html',
       controller: 'authCtrl'
     })
     .otherwise('/')
