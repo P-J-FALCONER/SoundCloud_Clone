@@ -10,9 +10,8 @@
 
     vm.currentPath = $location.path();
 
-    vm.isLoggedIn = authFactory.isLoggedIn();
 
-    vm.currentUser = authFactory.currentUser();
+    vm.currentUser = authFactory.getCurrentUser();
 
   }
 })();

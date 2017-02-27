@@ -5,8 +5,18 @@ function sendJSONResponse(res, status, data){
   res.json(data);
 }
 
-module.exports.getUser = function(req, res){
-  return sendJSONResponse(res, 200, req.user);
+module.exports.getCurrentUser = function(req, res){
+  if(req.user){
+    console.log('found req.user');
+    console.log(req.user);
+    return sendJSONResponse(res, 200, req.user);
+  } else if(req.session.username){
+    console.log('found req.session');
+    console.log(req.session);
+    return sendJSONResponse(res, 200, req.session);
+  } else {
+    return sendJSONResponse(res, 200, '');
+  }
 }
 
 module.exports.logout = function(req, res){
