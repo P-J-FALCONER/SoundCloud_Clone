@@ -18,11 +18,18 @@ var UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  avatar_path: {
+  image_path: {
     type: String,
     required: true
   },
-  
+  // stationLikes: [{
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'Song'
+  // }],
+  following: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }]
 }, {
   timestamps: true
 });
