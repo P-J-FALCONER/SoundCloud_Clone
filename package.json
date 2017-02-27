@@ -4,6 +4,8 @@
   "description": "* Patrick Falconer * Nick Phillips ## Dependencies * Paste Package.json ## Installation ```node server.js``` ## To-Do * create app * update readme description * author links to our githubs * list of Dependencies * Installation instructions * create app",
   "main": "server.js",
   "dependencies": {
+    "bcrypt": "^1.0.2",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.16.1",
     "dotenv": "^4.0.0",
     "express": "^4.14.1",
