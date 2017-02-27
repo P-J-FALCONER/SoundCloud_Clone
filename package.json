@@ -1,0 +1,26 @@
+{
+  "name": "SoundCloud_Clone",
+  "version": "1.0.0",
+  "description": "* Patrick Falconer * Nick Phillips ## Dependencies * Paste Package.json ## Installation ```node server.js``` ## To-Do * create app * update readme description * author links to our githubs * list of Dependencies * Installation instructions * create app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/P-J-FALCONER/SoundCloud_Clone.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/P-J-FALCONER/SoundCloud_Clone/issues"
+  },
+  "homepage": "https://github.com/P-J-FALCONER/SoundCloud_Clone#readme",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "express-jwt": "^5.1.0",
+    "jsonwebtoken": "^7.3.0"
+  }
+}
