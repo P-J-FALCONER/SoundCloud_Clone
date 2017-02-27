@@ -3,6 +3,9 @@ var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 
 var UserSchema = new mongoose.Schema({
+  google_token: {
+    type: String
+  },
   username: {
     type: String,
     required: true,
