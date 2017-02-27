@@ -1,4 +1,4 @@
-angular.module('auth')
+angular.module('soundcloud')
   .factory('authFactory', ['$http', '$window', function($http, $window){
     return {
       register: function(data){

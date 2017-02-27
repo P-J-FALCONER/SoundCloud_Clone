@@ -1,3 +1,4 @@
+require('dotenv').config(); // remove for production
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
