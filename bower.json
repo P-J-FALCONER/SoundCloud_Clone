@@ -1,0 +1,25 @@
+{
+  "name": "y",
+  "homepage": "y",
+  "authors": [
+    "y"
+  ],
+  "description": "y",
+  "main": "y",
+  "keywords": [
+    "y"
+  ],
+  "license": "y",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-bootstrap": "^2.5.0",
+    "bootstrap": "^3.3.7"
+  }
+}
