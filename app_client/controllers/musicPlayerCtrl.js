@@ -4,7 +4,7 @@
     .module('soundcloud')
     .controller('musicPlayerCtrl', musicPlayerCtrl);
 
-  navCtrl.$inject = ['$location', 'authFactory'];
+  musicPlayerCtrl.$inject = ['$location', 'authFactory'];
   function musicPlayerCtrl($location, authFactory) {
     var vm = this;
 
