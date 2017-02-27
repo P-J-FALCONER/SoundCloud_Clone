@@ -1,23 +1,22 @@
-(function () {
+angular.module('soundcloud')
+  .controller('navCtrl', ['$scope', 'authFactory', '$location', function($scope, authFactory, $location){
+    $scope.currentPath = $location.path();
 
-  angular
-    .module('soundcloud')
-    .controller('navCtrl', navCtrl);
+    authFactory.getCurrentUser().then(function(response){
+      console.log(response);
+      $scope.user = response.data.username;
+      $scope.isLoggedIn = true;
+    }).catch(function(err){
+      console.log(err);
+    })
 
-  navCtrl.$inject = ['$location', 'authFactory'];
-  function navCtrl($location, authFactory) {
-    var vm = this;
-
-    vm.currentPath = $location.path();
-
-    vm.isLoggedIn = authFactory.isLoggedIn();
-
-    vm.currentUser = authFactory.currentUser();
-
-    vm.logout = function() {
-      authFactory.logout();
-      $location.path('/');
-    };
-
-  }
-})();
+    $scope.logout = function(){
+      authFactory.logout()
+        .then(function(response){
+          $scope.user = '';
+        })
+        .catch(function(response){
+          console.log(response.data);
+        })
+    }
+  }]);

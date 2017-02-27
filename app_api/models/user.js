@@ -15,6 +15,9 @@ var UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  password: {
+    type: String
+  },
   image_path: {
     type: String
   },
@@ -51,16 +54,16 @@ UserSchema.methods.generateJwt = function() {
   }, "MY_SECRET"); // DO NOT KEEP YOUR SECRET IN THE CODE!
 };
 
-UserSchema.methods.passwordCheck = function(password){
-  return bcrypt.compareSync(password, this.password);
-}
-
-UserSchema.methods.hashPassword = function(password){
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
-}
+// UserSchema.methods.passwordCheck = function(password){
+//   return bcrypt.compareSync(password, this.password);
+// }
+//
+// UserSchema.methods.hashPassword = function(password){
+//   return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
+// }
 
 UserSchema.pre('save', function(done){
-  this.password = this.hashPassword(this.password);
+  // this.password = this.hashPassword(this.password);
   done();
 });
 

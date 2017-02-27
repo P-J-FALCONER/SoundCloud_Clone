@@ -1,9 +1,5 @@
 angular.module('soundcloud')
   .controller('authCtrl', ['$scope', 'authFactory', '$location', function($scope, authFactory, $location){
-    $scope.isLoggedIn = authFactory.isLoggedIn();
-
-    $scope.currentUser = authFactory.currentUser();
-
     $scope.register = function(){
       authFactory.register({
         username: $scope.username,

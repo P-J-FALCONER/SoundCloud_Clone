@@ -5,6 +5,14 @@ function sendJSONResponse(res, status, data){
   res.json(data);
 }
 
+module.exports.getUser = function(req, res){
+  return sendJSONResponse(res, 200, req.user);
+}
+
+module.exports.logout = function(req, res){
+  return sendJSONResponse(res, 200, req.logout());
+}
+
 module.exports.register = function(req, res){
   User.create({
     email: req.body.email,

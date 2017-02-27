@@ -7,7 +7,6 @@ var User       = require('../models/user');
 var configAuth = require('./auth');
 
 module.exports = function(passport) {
-  console.log(passport);
     // used to serialize the user for the session
     passport.serializeUser(function(user, done) {
         done(null, user.id);
@@ -40,16 +39,14 @@ module.exports = function(passport) {
         // make the code asynchronous
         // User.findOne won't fire until we have all our data back from Google
         process.nextTick(function() {
-          console.log('in process');
-          console.log(profile);
             // try to find the user based on their google id
             User.findOne({ 'email' : profile.emails[0].value }, function(err, user) {
-              console.log('trying to find user');
-                if (err)
-                    return done(err);
+                console.log(err, user);
+                if (err){
+                  return done(err);
+                }
 
                 if (user) {
-
                     // if a user is found, log them in
                     return done(null, user);
                 } else {
