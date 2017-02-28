@@ -6,7 +6,15 @@ router.get('/auth/google', passport.authenticate('google', { scope : ['profile',
 
 router.get('/auth/google/callback', passport.authenticate('google', {
     successRedirect: '/',
-    failureRedirect: '/login'
+    failureRedirect: '/'
+  })
+)
+
+router.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+
+router.get('/auth/facebook/callback', passport.authenticate('facebook', {
+    successRedirect: '/',
+    failureRedirect: '/'
   })
 )
 

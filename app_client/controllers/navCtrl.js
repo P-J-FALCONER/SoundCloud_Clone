@@ -9,6 +9,9 @@ angular.module('soundcloud')
       } else if('local' in response.data){
         $scope.user = response.data.local.username;
         $scope.isLoggedIn = true;
+      } else if('facebook' in response.data){
+        $scope.user = response.data.facebook.username;
+        $scope.isLoggedIn = true;
       }
     }).catch(function(err){
       console.log(err);
