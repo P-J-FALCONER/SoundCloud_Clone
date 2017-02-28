@@ -6,6 +6,10 @@ angular.module('soundcloud')
       },
       getSongs:function(){
         return $http.get('/api/songs')
+      },
+      getUsers:function(){
+        console.log('factory')
+        return $http.get('/api/allusers')
       }
     }
   }])

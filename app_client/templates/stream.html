@@ -20,12 +20,7 @@
       <h4>Search for Users/Artists</h4>
       <input type="text" name="search" ng-model="search" placeholder="Search for Users">
     </form>
-    <div style="margin: 5%;">
-      <img src="https://assets.entrepreneur.com/content/16x9/822/1413823428-amazingly-free-stock-websites.jpg" class="img-circle" alt="following image" style="height: 4em;width: 4em;">
-      <h5 style="text-align: center;display: inline-block;"><a href="">User</a></h5>
-      <span class="glyphicon glyphicon-plus" aria-hidden="true" style="font-size: 1em;"></span>
-    </div>
-    <div style="margin: 5%;">
+    <div style="margin: 5%;" ng-repeat="user in users">
       <img src="https://assets.entrepreneur.com/content/16x9/822/1413823428-amazingly-free-stock-websites.jpg" class="img-circle" alt="following image" style="height: 4em;width: 4em;">
       <h5 style="text-align: center;display: inline-block;"><a href="">User</a></h5>
       <span class="glyphicon glyphicon-plus" aria-hidden="true" style="font-size: 1em;"></span>

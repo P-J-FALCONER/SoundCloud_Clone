@@ -37,8 +37,19 @@ module.exports.getSongs = function(req, res){
       console.log(err);
       sendJSONResponse(res,400,err);
     }else{
-      console.log('DATA---',songs);
       res.json(songs);
+    }
+  })
+}
+
+module.exports.getAllUsers = function(req, res){
+  console.log('hey');
+  User.find({}, function(err, users){
+    if(err){
+      console.log(err);
+      sendJSONResponse(res,400,err);
+    }else{
+      res.json(users);
     }
   })
 }
