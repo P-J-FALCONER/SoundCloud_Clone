@@ -23,7 +23,8 @@ angular.module('soundcloud')
     $scope.logout = function(){
       authFactory.logout()
         .then(function(response){
-          $scope.user = '';
+          $scope.isLoggedIn = false;
+          $location.url('/')
         })
         .catch(function(response){
           console.log(response.data);

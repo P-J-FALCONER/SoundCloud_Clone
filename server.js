@@ -16,7 +16,7 @@ app.use(cookieParser());
 require('./app_api/models/db.js')
 require('./app_api/config/passport')(passport);
 var routes = require('./app_api/routes/apiRoutes.js')
-var googleRoutes = require('./app_api/routes/googleRoutes.js')
+var oAuthRoutes = require('./app_api/routes/oAuthRoutes.js')
 
 app.use(session({
 	secret: 'secretClementine',
@@ -28,7 +28,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/api', routes)
-app.use('/', googleRoutes)
+app.use('/', oAuthRoutes)
 app.use(express.static(path.join(__dirname, 'bower_components')))
 app.use(express.static(path.join(__dirname, 'app_client')))
 
