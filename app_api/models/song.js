@@ -10,6 +10,9 @@ var SongSchema = new mongoose.Schema({
     ref: 'User',
     required: true
   },
+  name: {
+    type:String
+  },
   userLikes: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
