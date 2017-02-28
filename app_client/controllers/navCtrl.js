@@ -3,9 +3,13 @@ angular.module('soundcloud')
     $scope.currentPath = $location.path();
 
     authFactory.getCurrentUser().then(function(response){
-      console.log(response);
-      $scope.user = response.data.username;
-      $scope.isLoggedIn = true;
+      if('google' in response.data){
+        $scope.user = response.data.google.username;
+        $scope.isLoggedIn = true;
+      } else if('local' in response.data){
+        $scope.user = response.data.local.username;
+        $scope.isLoggedIn = true;
+      }
     }).catch(function(err){
       console.log(err);
     })

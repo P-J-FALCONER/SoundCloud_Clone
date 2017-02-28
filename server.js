@@ -9,6 +9,10 @@ var session = require('express-session');
 var flash    = require('connect-flash');
 var path = require('path');
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+
 require('./app_api/models/db.js')
 require('./app_api/config/passport')(passport);
 var routes = require('./app_api/routes/apiRoutes.js')
@@ -26,11 +30,6 @@ app.use('/api', routes)
 app.use('/', googleRoutes)
 app.use(express.static(path.join(__dirname, 'bower_components')))
 app.use(express.static(path.join(__dirname, 'app_client')))
-
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 
 
 app.listen(8000);

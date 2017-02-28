@@ -6,9 +6,9 @@ angular.module('soundcloud')
         email: $scope.email,
         password: $scope.password
       }).then(function(user){
-        authFactory.saveToken(user.data.token);
+        console.log(user);
       }).catch(function(err){
-        $scope.email_exists = true;
+        console.log(err);
       })
     }
 
@@ -17,10 +17,9 @@ angular.module('soundcloud')
         email: $scope.login_email,
         password: $scope.login_password
       }).then(function(user){
-        authFactory.saveToken(user.data.token);
-        $location.url('/profile')
+        console.log(user);
       }).catch(function(err){
-        $scope.authFail = err.data.error;
+        console.log(err);
       })
     }
 

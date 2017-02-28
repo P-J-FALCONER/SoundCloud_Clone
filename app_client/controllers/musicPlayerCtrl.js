@@ -10,7 +10,5 @@
 
     vm.currentPath = $location.path();
 
-    vm.currentUser = authFactory.getCurrentUser();
-
   }
 })();
