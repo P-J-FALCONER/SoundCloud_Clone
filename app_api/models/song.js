@@ -10,6 +10,10 @@ var SongSchema = new mongoose.Schema({
     ref: 'User',
     required: true
   },
+  image: {
+    type: String,
+    default: 'static/img/no_pic.png'
+  },
   name: {
     type:String
   },

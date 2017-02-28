@@ -2,27 +2,26 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 
 var UserSchema = new mongoose.Schema({
+  email: String,
   local: {
-    email: String,
     username: String,
     password: String
   },
   google: {
     token        : String,
-    email        : String,
-    username     : String,
-    image        : String
+    username     : String
   },
   facebook: {
     token        : String,
-    email        : String,
-    username     : String,
-    image        : String
+    username     : String
   },
   // stationLikes: [{
   //   type: mongoose.Schema.Types.ObjectId,
   //   ref: 'Song'
   // }],
+  image: {
+
+  },
   following: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
