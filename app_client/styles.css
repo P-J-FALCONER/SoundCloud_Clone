@@ -1,3 +1,11 @@
+/* SITE WIDE CSS */
 .error{
   color: red;
+}
+
+/* NAVBAR */
+.userImg{
+  height: 30px;
+  width: 30px;
+  margin-right: 10px;
 }

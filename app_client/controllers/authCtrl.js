@@ -20,6 +20,7 @@ angular.module('soundcloud')
         console.log(user);
       }).catch(function(err){
         console.log(err);
+        $scope.authFail = 'Incorrect, try again!'
       })
     }
 
