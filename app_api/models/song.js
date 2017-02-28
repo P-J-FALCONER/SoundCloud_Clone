@@ -1,9 +1,14 @@
 var mongoose = require('mongoose');
 
 var SongSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
   artist: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    required: true
   },
   userLikes: [{
     type: mongoose.Schema.Types.ObjectId,
@@ -17,17 +22,9 @@ var SongSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Album'
   },
-  audio_path: {
-    type: String,
-    required: true
-  },
   plays: {
     type: Number,
     default: 0
-  },
-  duration: {
-    type: Number,
-    required: true
   }
 }, {
   timestamps: true

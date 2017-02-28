@@ -1,4 +1,4 @@
-angular.module('soundcloud', ['ngRoute', 'ngMessages', 'ui.bootstrap']);
+angular.module('soundcloud', ['ngRoute', 'ngMessages', 'ui.bootstrap', 'ngFileUpload']);
 
 angular.module('soundcloud').config(function($routeProvider){
   $routeProvider
