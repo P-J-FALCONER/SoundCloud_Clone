@@ -3,25 +3,24 @@ var bcrypt = require('bcryptjs');
 
 var UserSchema = new mongoose.Schema({
   email: String,
+  image: {
+    type: String,
+    default: 'static/img/no_pic.png'
+  },
+  username: String,
   local: {
-    username: String,
     password: String
   },
   google: {
-    token        : String,
-    username     : String
+    token: String
   },
   facebook: {
-    token        : String,
-    username     : String
+    token: String
   },
   // stationLikes: [{
   //   type: mongoose.Schema.Types.ObjectId,
   //   ref: 'Song'
   // }],
-  image: {
-
-  },
   following: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'

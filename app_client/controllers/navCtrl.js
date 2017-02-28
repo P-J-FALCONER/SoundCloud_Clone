@@ -6,15 +6,11 @@ angular.module('soundcloud')
     $scope.isCollapsed2 = true;
 
     authFactory.getCurrentUser().then(function(response){
-      if('google' in response.data){
-        $scope.user = response.data.google.username;
+      console.log(response.data);
+      if(response.data){
+        $scope.auth_username = response.data.username;
         $scope.isLoggedIn = true;
-      } else if('local' in response.data){
-        $scope.user = response.data.local.username;
-        $scope.isLoggedIn = true;
-      } else if('facebook' in response.data){
-        $scope.user = response.data.facebook.username;
-        $scope.isLoggedIn = true;
+        $scope.userimage = response.data.image;
       }
     }).catch(function(err){
       console.log(err);

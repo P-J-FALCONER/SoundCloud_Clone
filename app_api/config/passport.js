@@ -49,9 +49,12 @@ module.exports = function(passport) {
                 var newUser = new User();
 
                 // set the user's local credentials
-                newUser.local.username = req.body.username
-                newUser.email    = email;
+                newUser.username = req.body.username
+                newUser.email = email;
                 newUser.local.password = newUser.hashPassword(password);
+                if(req.body.image){
+                  newUser.image = req.body.image;
+                }
 
                 // save the user
                 newUser.save(function(err) {
@@ -129,7 +132,7 @@ module.exports = function(passport) {
 
                     // set all of the facebook information in our user model
                     newUser.facebook.token = token; // we will save the token that facebook provides to the user
-                    newUser.facebook.username  = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
+                    newUser.username  = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
                     newUser.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
                     if(profile.photos){
                       newUser.image = profile.photos[0].value
@@ -179,7 +182,7 @@ module.exports = function(passport) {
                     // set all of the relevant information
 
                     newUser.google.token = token;
-                    newUser.google.username  = profile.displayName;
+                    newUser.username  = profile.displayName;
                     newUser.email = profile.emails[0].value; // pull the first email
                     newUser.image = profile.photos[0].value;
 
