@@ -9,8 +9,8 @@ var session = require('express-session');
 var flash    = require('connect-flash');
 var path = require('path');
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true}));
 app.use(cookieParser());
 
 require('./app_api/models/db.js')

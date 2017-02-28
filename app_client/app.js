@@ -8,6 +8,9 @@ angular.module('soundcloud').config(function($routeProvider){
     }).when('/user',{
       templateUrl:'./templates/userProfile.html',
       controller:'userProfileCtrl'
+    }).when('/upload',{
+      templateUrl:'./templates/upload.html',
+      controller:'uploadCtrl'
     }).when('/collections',{
       templateUrl: './templates/collections.html',
       controller: 'collectionsCtrl'
