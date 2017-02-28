@@ -3,11 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title>Sound Cloud</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> 
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <script src="angular/angular.min.js" charset="utf-8"></script>
     <script src="angular-route/angular-route.min.js" charset="utf-8"></script>
     <script src="angular-route/angular-route.min.js" charset="utf-8"></script>
     <script src="angular-messages/angular-messages.min.js" charset="utf-8"></script>
+    <script src="ng-file-upload-shim/ng-file-upload-shim.min.js"></script> <!-- for no html5 browsers support -->
+    <script src="ng-file-upload/ng-file-upload.min.js"></script>
     <script src="./app.js" charset="utf-8"></script>
     <script src="./controllers/authCtrl.js" charset="utf-8"></script>
     <script src="./controllers/navCtrl.js" charset="utf-8"></script>
@@ -22,6 +24,7 @@
     <script src="./factories/contentFactory.js" charset="utf-8"></script>
     <script src="./directives/passwordDirective.js" charset="utf-8"></script>
     <script src="./directives/navDirective.js" charset="utf-8"></script>
+    <script src="./directives/uploadDirective.js" charset="utf-8"></script>
     <script src="./directives/musicPlayerDirective.js" charset="utf-8"></script>
     <script src="angular-bootstrap/ui-bootstrap-tpls.js" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.min.css"/>
