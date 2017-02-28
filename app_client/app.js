@@ -26,7 +26,7 @@ angular.module('soundcloud').config(function($routeProvider){
       templateUrl: './templates/topChart.html',
       controller:'topChartCtrl',
       activetab:'topchart'
-    }).when('/artist/:id', {
+    }).when('/artist',{
       emplateUrl: './templates/artist.html',
       controller:'artistCtrl',
       activetab:'artist'

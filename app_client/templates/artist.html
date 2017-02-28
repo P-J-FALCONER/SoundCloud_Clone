@@ -1,5 +1,17 @@
 <navigation></navigation>
   
-  <h1>Artist Name</h1>
+<h1>Artist Name</h1>
+<div style="margin-bottom: 5%;" class="col-sm-9">
+  <img src="http://www.flat-e.com/flate5/wp-content/uploads/cover-960x857.jpg" alt="Art" width="21%" style="vertical-align: top;">
+  <div style="display: inline-block;">
+    <span class="glyphicon glyphicon-play" aria-hidden="true" style="font-size: 3em;"></span>
+    <p>Artist</p>
+    <p>Song Name</p>
+    <form ng-submit="comment(song_id)">
+      <input type="text" name="comment" placeholder="Comment Here">
+      <input type="submit" value="Comment">
+    </form>
+  </div>
+</div>
 
 <musicPlayer></musicPlayer>
