@@ -7,7 +7,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li ng-hide="isLoggedIn"><a href="/#login/?page={{ currentPath }}">Sign in</a></li>
         <li ng-show="isLoggedIn" class="dropdown" ng-click="isCollapsed2 = !isCollapsed2">
-          <a href class="dropdown-toggle"><img src="{{ userimage }}" alt="myself pic">{{ auth_username }}<span class="caret"></span></a>
+          <a href class="dropdown-toggle"><img src="{{ userimage }}" alt="myself pic" style="height: 3em;width: 3em;">{{ auth_username }}<span class="caret"></span></a>
           <ul class="dropdown" role="menu" uib-collapse="isCollapsed2">
             <li><a href ng-click="logout()">Logout</a></li>
             <li><a href="/#!/user">User Page</a></li>
