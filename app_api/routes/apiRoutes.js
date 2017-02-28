@@ -9,5 +9,6 @@ router.get('/user', authController.getCurrentUser);
 router.delete('/user', authController.logout);
 
 router.post('/audio', multipartMiddleware, contentController.addAudio);
+router.get('/songs', contentController.getSongs);
 
 module.exports = router;

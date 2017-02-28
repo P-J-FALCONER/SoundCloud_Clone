@@ -3,6 +3,9 @@ angular.module('soundcloud')
     return{
       getCurrentUser: function(){
         return $http.get('/api/user');
+      },
+      getSongs:function(){
+        return $http.get('/api/songs')
       }
     }
   }])

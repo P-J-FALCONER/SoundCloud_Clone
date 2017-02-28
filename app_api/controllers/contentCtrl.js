@@ -30,3 +30,15 @@ module.exports.addAudio = function(req, res){
     }
   })
 }
+
+module.exports.getSongs = function(req, res){
+  Song.find({}, function(err,songs){
+    if(err){
+      console.log(err);
+      sendJSONResponse(res,400,err);
+    }else{
+      console.log('DATA---',songs);
+      res.json(songs);
+    }
+  })
+}
