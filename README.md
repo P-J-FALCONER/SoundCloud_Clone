@@ -1,6 +1,6 @@
 # SoundCloud Clone
 ## About
-### About the project
+### Soundcloud Clone using the MEAN Stack
 ## Authors
   * Patrick Falconer
   * Nick Phillips
@@ -8,13 +8,11 @@
 ## Dependencies
   * Paste Package.json
 
-## Installation
-  ```node server.js```
-
 ## To-Do
-  * create app
   * update readme description
   * author links to our githubs
   * list of Dependencies
   * Installation instructions
-  * create app
+  * auth validations for local registration
+  * create artist/user page where public can view your stuff
+  * 
