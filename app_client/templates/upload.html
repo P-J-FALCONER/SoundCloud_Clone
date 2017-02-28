@@ -1,6 +1,24 @@
 <navigation></navigation>
-<form name="form">
-  <input type="text" ng-model="name" name="name" value="">
-  <input type="file" ngf-select ng-model="audioFile" name="file" ngf-max-size="2MB" required>
-  <button type="submit" ng-click="uploadFile()">submit</button>
+
+<h2>Upload to SoundCloud</h2>
+<form novalidate name="uploadForm" ng-submit='uploadForm.$valid && uploadFile()'>
+  <div class="form-group">
+    <label>Name</label>
+    <input type="text" ng-model="name" name="name" accept="image/*" value="" required>
+    <div ng-if='uploadForm.$submitted' ng-messages="uploadForm.name.$error" multiple>
+      <div class='error' ng-message="required">This field cannot be empty.</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Picture</label>
+    <input fileread='image' type="file" name="image" accept="image/*">
+  </div>
+  <div class="form-group">
+    <label for="file">Upload Audio File</label>
+    <input type="file" ngf-select ng-model="audioFile" name="file" ngf-max-size="2MB" required>
+    <div ng-if='uploadForm.$submitted' ng-messages="uploadForm.file.$error" multiple>
+      <div class='error' ng-message="required">This field cannot be empty.</div>
+    </div>
+  </div>
+  <button class='btn btn-default' type="submit">submit</button>
 </form>

@@ -35,7 +35,7 @@ module.exports = function(passport) {
 
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
-        User.findOne({ 'local.email' :  email }, function(err, user) {
+        User.findOne({ 'email' :  email }, function(err, user) {
             // if there are any errors, return the error
             if (err){
               return done(err, null);
@@ -50,7 +50,7 @@ module.exports = function(passport) {
 
                 // set the user's local credentials
                 newUser.local.username = req.body.username
-                newUser.local.email    = email;
+                newUser.email    = email;
                 newUser.local.password = newUser.hashPassword(password);
 
                 // save the user
@@ -73,7 +73,7 @@ module.exports = function(passport) {
     function(email, password, done) { // callback with email and password from our form
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
-        User.findOne({ 'local.email' :  email }, function(err, user) {
+        User.findOne({ 'email' :  email }, function(err, user) {
             // if there are any errors, return the error before anything else
             if (err){
                 return done(err);
@@ -102,7 +102,7 @@ module.exports = function(passport) {
         clientID        : configAuth.facebookAuth.clientID,
         clientSecret    : configAuth.facebookAuth.clientSecret,
         callbackURL     : configAuth.facebookAuth.callbackURL,
-        profileFields: ['id', 'emails', 'name']
+        profileFields: ['id', 'emails', 'name', 'photos']
 
     },
 
@@ -113,7 +113,7 @@ module.exports = function(passport) {
         process.nextTick(function() {
 
             // find the user in the database based on their facebook id
-            User.findOne({ 'facebook.id' : profile.id }, function(err, user) {
+            User.findOne({ 'email' : profile.emails[0].value }, function(err, user) {
 
                 // if there is an error, stop everything and return that
                 // ie an error connecting to the database
@@ -130,8 +130,10 @@ module.exports = function(passport) {
                     // set all of the facebook information in our user model
                     newUser.facebook.token = token; // we will save the token that facebook provides to the user
                     newUser.facebook.username  = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
-                    newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
-
+                    newUser.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
+                    if(profile.photos){
+                      newUser.image = profile.photos[0].value
+                    }
                     // save our user to the database
                     newUser.save(function(err) {
                         if (err){
@@ -178,8 +180,8 @@ module.exports = function(passport) {
 
                     newUser.google.token = token;
                     newUser.google.username  = profile.displayName;
-                    newUser.google.email = profile.emails[0].value; // pull the first email
-                    newUser.google.image = profile.photos[0].value;
+                    newUser.email = profile.emails[0].value; // pull the first email
+                    newUser.image = profile.photos[0].value;
 
                     // save the user
                     newUser.save(function(err) {

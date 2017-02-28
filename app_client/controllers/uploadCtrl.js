@@ -1,13 +1,14 @@
 angular.module('soundcloud')
   .controller('uploadCtrl', ['$http', '$scope', 'contentFactory', '$location', 'Upload', function($http, $scope, contentFactory, $location, Upload){
     $scope.uploadFile = function(){
-      console.log($scope.audioFile);
+      console.log($scope.image);
       Upload.upload({
             url: '/api/audio',
             method: 'post',
             data: {
               file: $scope.audioFile,
-              name: $scope.name
+              name: $scope.name,
+              image: $scope.image
             }
         }).then(function (resp) {
             console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);

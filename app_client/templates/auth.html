@@ -6,32 +6,31 @@
     <!-- Delay model update with ng-model-options="{ debounce: 500 }" -->
     <input ng-model='email' type="email" name="email" required>
     <div ng-messages="registerForm.email.$error" multiple>
-      <div ng-message="required">Please enter your email.</div>
-      <div ng-message="email">Please enter a valid email address.</div>
-      <div ng-if='email_exists'>Email already exists, please login.</div>
+      <div class='error' ng-message="required">Please enter your email.</div>
+      <div class='error' ng-message="email">Please enter a valid email address.</div>
     </div>
   </div>
   <div class="field">
     <label>UserName</label>
     <input ng-model='username' type="text" name="username" required>
     <div ng-if='registerForm.$submitted' ng-messages="registerForm.first_name.$error">
-      <div ng-message="required">Please enter your first name.</div>
+      <div class='error' ng-message="required">Please enter your first name.</div>
     </div>
   </div>
   <div class="field">
     <label>Password</label>
     <input ng-model='password' ng-minlength='1' type="password" name="password" required>
     <div ng-if='registerForm.$submitted' ng-messages="registerForm.password.$error">
-      <div ng-message="required">Please enter your password.</div>
-      <div ng-message="minlength">Password needs to be of 1 character</div>
+      <div class='error' ng-message="required">Please enter your password.</div>
+      <div class='error' ng-message="minlength">Password needs to be of 1 character</div>
     </div>
   </div>
   <div class="field">
     <label>Confirm Password</label>
     <input pwconfirm ng-model='password_confirm' type="password" name="password_confirm" required>
     <div ng-if='registerForm.$submitted' ng-messages="registerForm.password_confirm.$error">
-      <div ng-message="required">Please enter your password again.</div>
-      <div ng-message="pwconfirm">Make sure this matches the pw above.</div>
+      <div class='error' ng-message="required">Please enter your password again.</div>
+      <div class='error' ng-message="pwconfirm">Make sure this matches the pw above.</div>
     </div>
   </div>
   <button type="submit">Register</button>
@@ -42,14 +41,14 @@
     <label>Email</label>
     <input ng-model='login_email' type="email" name="email" required>
     <div ng-messages="loginForm.email.$error" multiple>
-      <div ng-message="required">Please enter your email.</div>
+      <div class='error' ng-message="required">Please enter your email.</div>
     </div>
   </div>
   <div class="field">
     <label>Password</label>
     <input ng-model='login_password' type="password" name="password" required>
     <div ng-if='loginForm.$submitted' ng-messages="loginForm.password.$error">
-      <div ng-message="required">Please enter your password.</div>
+      <div class='error' ng-message="required">Please enter your password.</div>
     </div>
   </div>
   <button type="submit">Login</button>
