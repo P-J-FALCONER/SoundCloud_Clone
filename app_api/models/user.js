@@ -13,6 +13,12 @@ var UserSchema = new mongoose.Schema({
     username     : String,
     image        : String
   },
+  facebook: {
+    token        : String,
+    email        : String,
+    username     : String,
+    image        : String
+  },
   // stationLikes: [{
   //   type: mongoose.Schema.Types.ObjectId,
   //   ref: 'Song'
