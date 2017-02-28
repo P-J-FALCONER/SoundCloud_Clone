@@ -13,7 +13,11 @@ angular.module('soundcloud').config(function($routeProvider){
     }).when('/collection',{
       templateUrl: './templates/collection.html',
       controller: 'collectionCtrl',
-      activetab:'collection'
+      activetab:'collection',
+      controller:'userProfileCtrl'
+    }).when('/upload',{
+      templateUrl:'./templates/upload.html',
+      controller:'uploadCtrl'
     }).when('/stream',{
       templateUrl: './templates/stream.html',
       controller: 'streamCtrl',

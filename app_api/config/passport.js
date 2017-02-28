@@ -38,11 +38,11 @@ module.exports = function(passport) {
         User.findOne({ 'local.email' :  email }, function(err, user) {
             // if there are any errors, return the error
             if (err){
-              return done(err);
+              return done(err, null);
             }
             // check to see if theres already a user with that email
             if (user) {
-                return done(null, false);
+                return done(null, null);
             } else {
                 // if there is no user with that email
                 // create the user
