@@ -4,18 +4,23 @@ angular.module('soundcloud').config(function($routeProvider){
   $routeProvider
     .when('/', {
       templateUrl: './templates/auth.html',
-      controller: 'authCtrl'
+      controller: 'authCtrl',
+      activetab: 'auth'
     }).when('/user',{
       templateUrl:'./templates/userProfile.html',
-      controller:'userProfileCtrl'
+      controller:'userProfileCtrl',
+      activetab:'user'
     }).when('/collections',{
       templateUrl: './templates/collections.html',
-      controller: 'collectionsCtrl'
+      controller: 'collectionsCtrl',
+      activetab:'collections'
     }).when('/stream',{
       templateUrl: './templates/stream.html',
-      controller: 'streamCtrl'
+      controller: 'streamCtrl',
+      activetab:'stream'
     }).when('/topchart',{
       templateUrl: './templates/topChart.html',
-      controller:'topChartCtrl'
+      controller:'topChartCtrl',
+      activetab:'topchart'
     }).otherwise('/')
 })
