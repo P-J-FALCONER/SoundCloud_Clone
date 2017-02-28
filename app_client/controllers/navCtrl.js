@@ -2,6 +2,9 @@ angular.module('soundcloud')
   .controller('navCtrl', ['$scope', 'authFactory', '$location', function($scope, authFactory, $location){
     $scope.currentPath = $location.path();
 
+    $scope.isCollapsed = true;
+    $scope.isCollapsed2 = true;
+
     authFactory.getCurrentUser().then(function(response){
       if('google' in response.data){
         $scope.user = response.data.google.username;
