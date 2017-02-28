@@ -4,6 +4,7 @@
 <table class="table table-hover">
     <thead>
       <tr>
+        <td>#</td>
         <th></th>
         <th>Song</th>
         <th>Artist</th>
@@ -15,6 +16,7 @@
     <tbody>
       <!--delete when we get songs-->
       <tr>
+        <td>1</td>
         <td  ng-click="play()"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></td>
         <td>Test Song</td>
         <td>Test Artist</td>
@@ -22,7 +24,8 @@
         <td>Test Date</td>
         <td>Test Likes</td>
       </tr>
-      <tr ng-repeat="song in songs">
+      <tr ng-repeat="song in songs track by $index">
+        <td>{{$index}}</td>
         <td  ng-click="play()"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></td>
         <td>{{song.name}}</td>
         <td>{{song.artist}}</td>

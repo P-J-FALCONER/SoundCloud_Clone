@@ -10,10 +10,10 @@ angular.module('soundcloud').config(function($routeProvider){
       templateUrl:'./templates/userProfile.html',
       controller:'userProfileCtrl',
       activetab:'user'
-    }).when('/collections',{
-      templateUrl: './templates/collections.html',
-      controller: 'collectionsCtrl',
-      activetab:'collections'
+    }).when('/collection',{
+      templateUrl: './templates/collection.html',
+      controller: 'collectionCtrl',
+      activetab:'collection'
     }).when('/stream',{
       templateUrl: './templates/stream.html',
       controller: 'streamCtrl',
