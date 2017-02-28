@@ -5,6 +5,11 @@
     </div>
     <div id="navbar-main" class="navbar-collapse collapse" uib-collapse="isCollapsed">
       <ul class="nav navbar-nav navbar-right">
+        <li class="active"><a href="/#!/user">User Profile <span class="sr-only">(current)</span></a></li>
+        <li><a href="/#!/collections">Collections <span class="sr-only">(current)</span></a></li>
+        <li><a href="/#!/stream">Stream <span class="sr-only">(current)</span></a></li>
+        <li><a href="/#!/topchart">Top Chart<span class="sr-only">(current)</span></a></li>
+        <li><a href="" ng-click="logout()">Logout</a></li>
         <li ng-hide="isLoggedIn"><a href="/#login/?page={{ currentPath }}">Sign in</a></li>
         <li ng-show="isLoggedIn" class="dropdown" ng-click="isCollapsed2 = !isCollapsed2">
           <a href class="dropdown-toggle">{{ user }}<span class="caret"></span></a>
