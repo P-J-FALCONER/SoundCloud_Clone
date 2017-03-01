@@ -14,5 +14,6 @@ router.get('/songs', contentController.getSongs);
 router.get('/allusers', contentController.getAllUsers);
 router.get('/user/aggregates', contentController.getAggregates);
 router.delete('/user/delete', contentController.deleteUser);
+router.patch('/user/follow', contentController.followUser);
 
 module.exports = router;

@@ -89,7 +89,8 @@ module.exports.getSongs = function(req, res){
 }
 
 module.exports.getAllUsers = function(req, res){
-  User.find({}, function(err, users){
+  console.log(req.user.following)
+  User.find({_id:{$nin: req.user.following}}, function(err, users){
     if(err){
       console.log(err);
       sendJSONResponse(res,400,err);
@@ -104,8 +105,18 @@ module.exports.getAggregates = function(req, res){
   console.log(req.user);
   Song.find({artist: req.user})
 }
+
 module.exports.deleteUser = function(req, res){
   User.findByIdAndRemove(req.user._id, function(removed){
     res.json(removed)
+  })
+}
+
+module.exports.followUser = function(req, res){
+  console.log('FOLLOWID--',req.body.followid)
+  User.update({_id:req.user.id},{ $push: { following: req.body.followid }},function(err, result){
+    console.log('error---',err);
+    console.log('results---',result)
+    res.json(result);
   })
 }
