@@ -96,7 +96,7 @@ module.exports.getSongs = function(req, res){
 
 module.exports.getAllUsers = function(req, res){
   
-  User.find({$and:[{_id:{$nin: req.user.following}}, {_id:{$nin: [req.user._id]}}]}, function(err, users){
+  User.find({_id:{$nin: req.user.following}}, function(err, users){
     if(err){
       console.log(err);
       sendJSONResponse(res,400,err);
