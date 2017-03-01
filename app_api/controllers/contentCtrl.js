@@ -15,6 +15,7 @@ module.exports.addAudio = function(req, res){
   }, function(err, song){
     console.log(song._id);
     if(err){
+      console.log('song creation err');
       console.log(err);
       sendJSONResponse(res, 400, err)
     } else {
@@ -34,12 +35,14 @@ module.exports.addAudio = function(req, res){
 
       // Change name of file already in audio folder
       var filename = req.files.file.path;
+      console.log('req.files.file.path is ', filename);
       var fileArr = filename.split('/');
       fileArr.pop();
       fileArr = fileArr.join('/');
       filename = fileArr + '/' + song._id + audioExt
+      console.log('filename is ' + filename);
       fs.rename(req.files.file.path, filename, function (writeErr) {
-        console.log(writeErr);
+        console.log('writ err ', writeErr);
       })
 
       if(req.body.image){
