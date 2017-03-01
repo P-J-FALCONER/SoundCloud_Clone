@@ -1,6 +1,7 @@
 var User = require('../models/user.js')
 var Song = require('../models/song.js')
 var fs = require('fs')
+var path = require('path')
 
 function sendJSONResponse(res, status, data){
   res.status(status);
@@ -13,9 +14,7 @@ module.exports.addAudio = function(req, res){
     artist: req.user._id,
     name: req.body.name,
   }, function(err, song){
-    console.log(song._id);
     if(err){
-      console.log('song creation err');
       console.log(err);
       sendJSONResponse(res, 400, err)
     } else {
@@ -35,14 +34,14 @@ module.exports.addAudio = function(req, res){
 
       // Change name of file already in audio folder
       var filename = req.files.file.path;
-      console.log('req.files.file.path is ', filename);
       var fileArr = filename.split('/');
       fileArr.pop();
       fileArr = fileArr.join('/');
       filename = fileArr + '/' + song._id + audioExt
-      console.log('filename is ' + filename);
       fs.rename(req.files.file.path, filename, function (writeErr) {
-        console.log('writ err ', writeErr);
+        if(writeErr){
+          console.log(writeErr);
+        }
       })
 
       if(req.body.image){
@@ -65,7 +64,7 @@ module.exports.addAudio = function(req, res){
             image = split[1];
         }
 
-        fs.writeFile(__dirname + '/../../app_client/static/img/songs/' + song._id + ext, image, "base64", function (writeErr) {
+        fs.writeFile(path.join(__dirname, '/../../app_client/static/img/songs/', song._id + ext), image, "base64", function (writeErr) {
           song.image = 'static/img/songs/' + song._id + ext
           song.save(function(err, product){
             sendJSONResponse(res, 201, product);
