@@ -4,7 +4,7 @@ var authController = require('../controllers/authCtrl.js')
 var contentController = require('../controllers/contentCtrl.js')
 var multipart = require('connect-multiparty');
 var path = require('path')
-var multipartMiddleware = multipart({ uploadDir: path.join(__dirname, '../../app_client/static/audio') });
+var multipartMiddleware = multipart({ uploadDir: path.join(__dirname, '..', '..', 'app_client', 'static', 'audio') });
 
 router.get('/user', authController.getCurrentUser);
 router.delete('/user', authController.logout);

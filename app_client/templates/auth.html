@@ -19,10 +19,10 @@
   </div>
   <div class="field">
     <label>Password<span class='error'> *</span></label>
-    <input ng-model='password' ng-minlength='1' type="password" name="password" required>
+    <input ng-model='password' ng-minlength='8' type="password" name="password" required>
     <div ng-if='registerForm.$submitted' ng-messages="registerForm.password.$error">
       <div class='error' ng-message="required">Please enter your password.</div>
-      <div class='error' ng-message="minlength">Password needs to be of 1 character</div>
+      <div class='error' ng-message="minlength">Password needs to be of 8 characters</div>
     </div>
   </div>
   <div class="field">

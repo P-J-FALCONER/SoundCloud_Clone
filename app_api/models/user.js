@@ -2,7 +2,10 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 
 var UserSchema = new mongoose.Schema({
-  email: String,
+  email: {
+    type:String,
+    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
+  },
   image: {
     type: String,
     default: 'static/img/no_pic.png'

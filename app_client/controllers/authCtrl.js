@@ -8,6 +8,7 @@ angular.module('soundcloud')
       }).then(function(user){
         $location.url('/stream')
       }).catch(function(err){
+        $scope.error = err
         console.log(err);
       })
     }
