@@ -6,7 +6,7 @@ angular.module('soundcloud')
         email: $scope.email,
         password: $scope.password
       }).then(function(user){
-        console.log(user);
+        location.url('/stream')
       }).catch(function(err){
         console.log(err);
       })
@@ -17,9 +17,10 @@ angular.module('soundcloud')
         email: $scope.login_email,
         password: $scope.login_password
       }).then(function(user){
-        console.log(user);
+        location.url('/stream')
       }).catch(function(err){
         console.log(err);
+        $scope.authFail = 'Incorrect, try again!'
       })
     }
 

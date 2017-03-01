@@ -51,9 +51,9 @@
       <div class='error' ng-message="required">Please enter your password.</div>
     </div>
   </div>
+  <div class="error">{{ authFail }}</div>
   <button type="submit">Login</button>
 </form>
-<p>{{ authFail }}</p>
 <a href ng-click='logout()' ng-show='currentUser'>Logout</a>
 <a href="auth/google" class="btn btn-danger"><span class="fa fa-google-plus"></span> Google</a>
 <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
