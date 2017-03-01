@@ -17,7 +17,7 @@ angular.module('soundcloud')
         email: $scope.login_email,
         password: $scope.login_password
       }).then(function(user){
-        location.url('/stream')
+        $location.url('/stream')
       }).catch(function(err){
         console.log(err);
         $scope.authFail = 'Incorrect, try again!'
