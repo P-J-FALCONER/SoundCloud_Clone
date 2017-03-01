@@ -5,8 +5,6 @@ angular.module('soundcloud')
       $scope.users = res.data
     })
     $scope.follow = function(id, index){
-      console.log(index);
-      console.log(id);
       contentFactory.followUser(id).then(function(res){
         $scope.users.splice(index, 1);
       })

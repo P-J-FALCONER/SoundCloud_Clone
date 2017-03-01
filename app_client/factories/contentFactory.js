@@ -17,7 +17,6 @@ angular.module('soundcloud')
         return $http.delete('/api/user/delete')
       },
       followUser: function(id){
-        console.log(id);
         return $http.patch('/api/user/follow', {followid:id})
       }
     }
