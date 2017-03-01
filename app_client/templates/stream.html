@@ -21,7 +21,7 @@
       <input type="text" name="search" ng-model="search" placeholder="Search for Users">
     </form>
     <div style="margin: 5%;" ng-repeat="user in users | limitTo:10 | orderBy:'following.length' | filter:search">
-      <img src="{{user.image}}" class="img-circle" alt="following image" style="height: 4em;width: 4em;">
+      <img ng-src="{{user.image}}" class="img-circle" alt="following image" style="height: 4em;width: 4em;">
       <span class="glyphicon glyphicon-plus" aria-hidden="true" style="font-size: 1em;"></span>
       <a style="display: block;" href="/#!/artist/{{user.username}}">{{user.username}}</a>
     </div>
