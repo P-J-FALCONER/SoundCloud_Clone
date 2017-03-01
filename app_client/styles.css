@@ -9,3 +9,8 @@
   width: 30px;
   margin-right: 10px;
 }
+/*Spacing between navbar and footer music player*/
+body {
+  padding-top: 80px;
+  padding-bottom: 60px;
+}

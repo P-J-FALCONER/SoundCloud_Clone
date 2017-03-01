@@ -6,7 +6,7 @@ angular.module('soundcloud')
         email: $scope.email,
         password: $scope.password
       }).then(function(user){
-        location.url('/stream')
+        $location.url('/stream')
       }).catch(function(err){
         console.log(err);
       })
