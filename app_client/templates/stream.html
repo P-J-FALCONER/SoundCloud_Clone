@@ -20,9 +20,9 @@
       <h4>Search for Users</h4>
       <input type="text" name="search" ng-model="search" placeholder="Search for Users">
     </form>
-    <div style="margin: 5%;" ng-repeat="user in users | limitTo:10 | orderBy:'following.length'">
+    <div style="margin: 5%;" ng-repeat="user in users | limitTo:10 | orderBy:'following.length' | filter:search">
       <img src="{{user.image}}" class="img-circle" alt="following image" style="height: 4em;width: 4em;">
-      <h5 style="text-align: center;display: inline-block;"><a href="/#!/artits/{{user.username}}">User</a></h5>
+      <h5 style="text-align: center;display: inline-block;"><a href="/#!/artist/{{user.username}}">{{user.username}}</a></h5>
       <span class="glyphicon glyphicon-plus" aria-hidden="true" style="font-size: 1em;"></span>
     </div>
   </div>
