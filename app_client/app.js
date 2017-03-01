@@ -33,15 +33,16 @@ angular.module('soundcloud').config(function($routeProvider){
     }).otherwise('/')
 })
 
-// protect the profile route from unauthenticated users
-// angular.module('soundcloud').run(function($rootScope, $location, authFactory) {
-//   $rootScope.$on('$routeChangeStart', function(event, nextRoute, currentRoute) {
-//     if ($location.path() === '/upload'){
-//       authFactory.getCurrentUser().then(function(user){
-//         if(user.data == ''){
-//           $location.path('/');
-//         }
-//       })
-//     }
-//   });
-// })
+angular.module('soundcloud').run(function($rootScope, $location, authFactory, $cacheFactory) {
+  $rootScope.$on('$routeChangeStart', function(event, nextRoute, currentRoute) {
+    if ($location.path() === '/user'){
+      authFactory.getCurrentUser().then(function(user){
+        if(user.data == ''){
+          $location.path('/');
+        }
+        var cache = $cacheFactory('userCache')
+        cache.put('user', user.data)
+      })
+    }
+  });
+})
