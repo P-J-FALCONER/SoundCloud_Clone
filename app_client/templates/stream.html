@@ -17,7 +17,7 @@
   <div class="col-sm-3">
     <!--filter by search and limit results to 10-->
     <form>
-      <h4>Search for Users/Artists</h4>
+      <h4>Search for Users</h4>
       <input type="text" name="search" ng-model="search" placeholder="Search for Users">
     </form>
     <div style="margin: 5%;" ng-repeat="user in users | limitTo:10 | orderBy:'following.length'">
