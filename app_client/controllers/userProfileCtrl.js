@@ -5,4 +5,9 @@ angular.module('soundcloud')
     }).catch(function(err){
       console.log(err);
     })
+    $scope.delete = function(){
+      contentFactory.deleteUser().then(function(res){
+        $location.url('/')
+      })
+    }
   }])

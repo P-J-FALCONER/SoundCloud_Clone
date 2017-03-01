@@ -12,6 +12,9 @@ angular.module('soundcloud')
       },
       getAggregateStats: function(){
         return $http.get('/api/user/aggregates')
+      },
+      deleteUser: function(){
+        return $http.delete('/api/user/delete')
       }
     }
   }])

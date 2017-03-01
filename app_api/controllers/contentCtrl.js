@@ -104,3 +104,8 @@ module.exports.getAggregates = function(req, res){
   console.log(req.user);
   Song.find({artist: req.user})
 }
+module.exports.deleteUser = function(req, res){
+  User.findByIdAndRemove(req.user._id, function(removed){
+    res.json(removed)
+  })
+}

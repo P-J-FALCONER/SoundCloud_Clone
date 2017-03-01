@@ -11,7 +11,8 @@ router.delete('/user', authController.logout);
 
 router.post('/audio', multipartMiddleware, contentController.addAudio);
 router.get('/songs', contentController.getSongs);
-router.get('/allusers', contentController.getAllUsers)
+router.get('/allusers', contentController.getAllUsers);
 router.get('/user/aggregates', contentController.getAggregates);
+router.delete('/user/delete', contentController.deleteUser);
 
 module.exports = router;
