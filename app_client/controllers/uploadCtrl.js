@@ -1,7 +1,7 @@
 angular.module('soundcloud')
   .controller('uploadCtrl', ['$http', '$scope', 'contentFactory', '$location', 'Upload', function($http, $scope, contentFactory, $location, Upload){
     $scope.uploadFile = function(){
-      console.log($scope.image);
+
       Upload.upload({
             url: '/api/audio',
             method: 'post',
