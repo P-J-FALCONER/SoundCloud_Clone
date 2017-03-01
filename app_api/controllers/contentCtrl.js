@@ -8,10 +8,12 @@ function sendJSONResponse(res, status, data){
 }
 
 module.exports.addAudio = function(req, res){
+
   Song.create({
     artist: req.user._id,
     name: req.body.name,
   }, function(err, song){
+    console.log(song._id);
     if(err){
       console.log(err);
       sendJSONResponse(res, 400, err)
@@ -91,4 +93,10 @@ module.exports.getAllUsers = function(req, res){
       res.json(users);
     }
   })
+}
+
+module.exports.getAggregates = function(req, res){
+  console.log('in server');
+  console.log(req.user);
+  Song.find({artist: req.user})
 }

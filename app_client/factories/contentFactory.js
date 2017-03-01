@@ -9,6 +9,9 @@ angular.module('soundcloud')
       },
       getUsers:function(){
         return $http.get('/api/allusers')
+      },
+      getAggregateStats: function(){
+        return $http.get('/api/user/aggregates')
       }
     }
   }])
