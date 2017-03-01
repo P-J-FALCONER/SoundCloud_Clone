@@ -16,14 +16,26 @@ module.exports.addAudio = function(req, res){
       console.log(err);
       sendJSONResponse(res, 400, err)
     } else {
-      var filename = req.files.file.path;
+      // Check for MIME type and store it
+      var audioExt;
+      var fileType = req.files.file.headers['content-type']
 
+      if(fileType == 'audio/mp3' || fileType == 'audio/mpeg'){
+        audioExt = '.mp3'
+      } else if(fileType == 'audio/ogg'){
+        audioExt = '.ogg'
+      } else if(fileType == 'audio/wav'){
+        audioExt = '.wav'
+      } else if(fileType == 'audio/wma'){
+        audioExt = '.wma'
+      }
+
+      // Change name of file already in audio folder
+      var filename = req.files.file.path;
       var fileArr = filename.split('/');
       fileArr.pop();
       fileArr = fileArr.join('/');
-
-      filename = fileArr + '/' + song._id + '.mp3'
-
+      filename = fileArr + '/' + song._id + audioExt
       fs.rename(req.files.file.path, filename, function (writeErr) {
         console.log(writeErr);
       })
@@ -33,9 +45,13 @@ module.exports.addAudio = function(req, res){
         var ext;
 
         if(split[0] == 'data:image/png;base64'){
-          ext = '.png'
-        } else {
-          ext = '.jpg'
+          ext = '.png';
+        } else if(split[0] == 'data:image/jpg;base64'){
+          ext = '.jpg';
+        } else if(split[0] == 'data:image/jpeg;base64'){
+          ext = '.jpeg'
+        } else if (split[0] == 'data:image/bmp;base64'){
+          ext = '.bmp'
         }
 
         if (split.length === 1) {
@@ -44,7 +60,7 @@ module.exports.addAudio = function(req, res){
             image = split[1];
         }
 
-        fs.writeFile(__dirname + '/../../app_client/static/img/songs' + song._id + ext, image, "base64", function (writeErr) {
+        fs.writeFile(__dirname + '/../../app_client/static/img/songs/' + song._id + ext, image, "base64", function (writeErr) {
           song.image = 'static/img/songs/' + song._id + ext
           song.save(function(err, product){
             sendJSONResponse(res, 201, product);
