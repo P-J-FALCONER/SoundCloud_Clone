@@ -9,12 +9,12 @@
         <li ng-show="isLoggedIn" class="dropdown" ng-click="isCollapsed2 = !isCollapsed2">
           <a href class="dropdown-toggle"><img class='userImg' ng-src="{{ user.image }}" alt="myself pic">{{ user.username }}<span class="caret"></span></a></li>
           <ul class="dropdown-menu" uib-collapse="isCollapsed2">
-            <li><a href ng-click="logout()">Logout</a></li>
-            <li><a href="/#!/user">User Page</a></li>
-            <li><a href="/#!/upload">Upload</a></li>
-            <li><a href="/#!/collection">Collection</a></li>
-            <li><a href="/#!/stream">Stream</a></li>
-            <li><a href="/#!/topchart">Top Chart</a></li>
+            <li><a href ng-click="logout(); isCollapsed2 = !isCollapsed2">Logout</a></li>
+            <li><a href="/#!/user" ng-click="isCollapsed2 = !isCollapsed2">User Page</a></li>
+            <li><a href="/#!/upload" ng-click="isCollapsed2 = !isCollapsed2">Upload</a></li>
+            <li><a href="/#!/collection" ng-click="isCollapsed2 = !isCollapsed2">Collection</a></li>
+            <li><a href="/#!/stream" ng-click="isCollapsed2 = !isCollapsed2">Stream</a></li>
+            <li><a href="/#!/topchart" ng-click="isCollapsed2 = !isCollapsed2">Top Chart</a></li>
           </ul>
         </li>
       </ul>

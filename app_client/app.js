@@ -1,4 +1,4 @@
-angular.module('soundcloud', ['ngRoute', 'ngMessages', 'ui.bootstrap', 'ngFileUpload']);
+angular.module('soundcloud', ['ngRoute', 'ngMessages', 'ui.bootstrap', 'ngFileUpload', 'ngAnimate']);
 
 angular.module('soundcloud').config(function($routeProvider){
   $routeProvider
@@ -36,7 +36,6 @@ angular.module('soundcloud').config(function($routeProvider){
 angular.module('soundcloud').run(function($rootScope, $location, authFactory, $cacheFactory) {
   $rootScope.$on('$routeChangeStart', function(event, nextRoute, currentRoute) {
     authFactory.getCurrentUser().then(function(user){
-
       if(angular.isUndefined($cacheFactory.get('userCache'))){
         $cacheFactory('userCache');
       }
