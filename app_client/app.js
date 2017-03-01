@@ -35,14 +35,21 @@ angular.module('soundcloud').config(function($routeProvider){
 
 angular.module('soundcloud').run(function($rootScope, $location, authFactory, $cacheFactory) {
   $rootScope.$on('$routeChangeStart', function(event, nextRoute, currentRoute) {
-    if ($location.path() === '/user'){
-      authFactory.getCurrentUser().then(function(user){
+    authFactory.getCurrentUser().then(function(user){
+
+      if(angular.isUndefined($cacheFactory.get('userCache'))){
+        $cacheFactory('userCache');
+      }
+
+      if(angular.isUndefined($cacheFactory.get('userCache').get('user'))){
+        $cacheFactory.get('userCache').put('user', user.data);
+      }
+
+      if ($location.path() === '/user' || $location.path() === '/upload'){
         if(user.data == ''){
           $location.path('/');
         }
-        var cache = $cacheFactory('userCache')
-        cache.put('user', user.data)
-      })
-    }
+      }
+    })
   });
 })

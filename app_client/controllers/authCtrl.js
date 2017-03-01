@@ -1,5 +1,5 @@
 angular.module('soundcloud')
-  .controller('authCtrl', ['$scope', 'authFactory', '$location', function($scope, authFactory, $location){
+  .controller('authCtrl', ['$scope', '$cacheFactory', 'authFactory', '$location', function($scope, $cacheFactory, authFactory, $location){
     $scope.register = function(){
       authFactory.register({
         username: $scope.username,
@@ -26,6 +26,7 @@ angular.module('soundcloud')
 
     $scope.logout = function(){
       authFactory.logout();
+      $cacheFactory.remove('user')
       $location.url('/login');
     }
   }])

@@ -3,11 +3,13 @@ angular.module('soundcloud')
     $scope.isCollapsed = true;
     $scope.isCollapsed2 = true;
 
-    var cache = $cacheFactory.get('userCache')
-    
-    if(cache){
-      $scope.user = cache.get('user');
+    if($cacheFactory.get('userCache').get('user')){
+      console.log("IN NAV: $cacheFactory.get('userCache').get('user') evals to " + $cacheFactory.get('userCache').get('user'));
+      $scope.user = $cacheFactory.get('userCache').get('user');
+      console.log($scope.user);
+      $scope.isLoggedIn = true;
     } else {
+      console.log('no cache call factory');
       authFactory.getCurrentUser().then(function(response){
         if(response.data){
           $scope.user = response.data;
@@ -21,6 +23,7 @@ angular.module('soundcloud')
     $scope.logout = function(){
       authFactory.logout()
         .then(function(response){
+          $cacheFactory.get('userCache').remove('user')
           $scope.isLoggedIn = false;
           $location.url('/')
         })
