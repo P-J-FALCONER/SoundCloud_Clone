@@ -28,7 +28,6 @@ module.exports = function(passport) {
         passReqToCallback: true
     },
     function(req, email, password, done) {
-      console.log(req.body);
         // asynchronous
         // User.findOne wont fire unless data is sent back
         process.nextTick(function() {
@@ -39,6 +38,11 @@ module.exports = function(passport) {
             // if there are any errors, return the error
             if (err){
               return done(err, null);
+            }
+            if (req.body.password.length < 8){
+              return done('Password validation failed', null)
+            }{
+
             }
             // check to see if theres already a user with that email
             if (user) {
@@ -58,8 +62,10 @@ module.exports = function(passport) {
 
                 // save the user
                 newUser.save(function(err) {
-                    if (err)
-                        throw err;
+                    if (err){
+                      return done('Validation Failed', null);
+                    }
+
                     return done(null, newUser);
                 });
             }

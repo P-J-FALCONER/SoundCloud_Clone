@@ -9,6 +9,10 @@ function sendJSONResponse(res, status, data){
 }
 
 module.exports.addAudio = function(req, res){
+  console.log('in server');
+  // if(!req.user._id){
+  //   sendJSONResponse(res, 400, 'Please log in on our site.')
+  // }
 
   Song.create({
     artist: req.user._id,
@@ -66,10 +70,12 @@ module.exports.addAudio = function(req, res){
 
         fs.writeFile(path.join(__dirname, '/../../app_client/static/img/songs/', song._id + ext), image, "base64", function (writeErr) {
           song.image = 'static/img/songs/' + song._id + ext
-          song.save(function(err, product){
-            sendJSONResponse(res, 201, product);
+          song.save(function(err, song){
+            sendJSONResponse(res, 201, song);
           })
         })
+      } else {
+        sendJSONResponse(res, 200, song)
       }
     }
   })
