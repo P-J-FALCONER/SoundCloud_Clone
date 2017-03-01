@@ -18,6 +18,7 @@
     <input type="file" ngf-select ng-model="audioFile" name="file" ngf-max-size="2MB" required>
     <div ng-if='uploadForm.$submitted' ng-messages="uploadForm.file.$error" multiple>
       <div class='error' ng-message="required">This field cannot be empty.</div>
+
     </div>
   </div>
   <button class='btn btn-default' type="submit">submit</button>
