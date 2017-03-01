@@ -1,5 +1,6 @@
 var User = require('../models/user.js')
 var Song = require('../models/song.js')
+var Album = require('../models/album.js')
 var fs = require('fs')
 var path = require('path')
 
@@ -94,8 +95,8 @@ module.exports.getSongs = function(req, res){
 }
 
 module.exports.getAllUsers = function(req, res){
-  console.log(req.user.following)
-  User.find({_id:{$nin: req.user.following}}, function(err, users){
+  
+  User.find({$and:[{_id:{$nin: req.user.following}}, {_id:{$nin: [req.user._id]}}]}, function(err, users){
     if(err){
       console.log(err);
       sendJSONResponse(res,400,err);
@@ -108,7 +109,45 @@ module.exports.getAllUsers = function(req, res){
 module.exports.getAggregates = function(req, res){
   console.log('in server');
   console.log(req.user);
-  Song.find({artist: req.user})
+  var results = {};
+  Song.count({artist: req.user._id}, function(err, songcount){
+    if(err){
+      console.log(err)
+    }else{
+      results.uploaded_songs = songcount;
+      console.log(results);
+      Album.count({artist:req.user._id}, function(err, albumcount){
+        if(err){
+          console.log(err);
+        }else{
+          results.uploaded_albums = albumcount;
+          results.following=req.user.following.length;
+          User.count({following:{$all:[req.user._id]}}, function(err, followers){
+            if(err){
+              console.log(err);
+            }else{
+              results.followers = followers;
+              Song.count({userLikes:{$all:[req.user._id]}}, function(err, song_likes){
+                if(err){
+                  console.log(err);
+                }else{
+                  results.song_likes= song_likes;
+                  Album.count({userLikes:{$all:[req.user._id]}}, function(err, album_likes){
+                    if(err){
+                      console.log(err)
+                    }else{
+                      results.album_likes = album_likes;
+                      res.json(results);
+                    }
+                  })
+                }
+              })
+            }
+          })
+        }
+      })
+    }
+  })
 }
 
 module.exports.deleteUser = function(req, res){
