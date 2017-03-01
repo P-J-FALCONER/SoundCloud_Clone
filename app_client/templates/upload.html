@@ -1,7 +1,5 @@
-<navigation></navigation>
-
 <h2>Upload to SoundCloud</h2>
-<form novalidate name="uploadForm" ng-submit='uploadForm.$valid && uploadFile()'>
+<form novalidate name="uploadForm" ng-submit='uploadForm.$valid && uploadFile(uploadForm)'>
   <div class="form-group">
     <label>Name</label>
     <input type="text" ng-model="name" name="name" accept="image/*" value="" required>
@@ -11,8 +9,8 @@
   </div>
   <div class="form-group">
     <label>Picture</label>
-    <input type="file" fileread='image' name="image" accept="image/*">
-    <div ng-if='uploadForm.$submitted' ng-messages="uploadForm.image.$error" multiple>
+    <input type="file" fileread='image' ng-model='image' name="image" accept="image/*">
+    <div ng-if='uploadForm.$dirty' ng-messages="uploadForm.image.$error" multiple>
       <div class='error' ng-message="accept">This field must be an image file.</div>
     </div>
   </div>
@@ -24,7 +22,6 @@
       <div class='error' ng-message="accept">This field must be an audio file.</div>
     </div>
   </div>
-  <div class="success">{{ success }}</div>
   <button class='btn btn-default' type="submit">submit</button>
 </form>
-<musicPlayer></musicPlayer>
+<div ng-show='success' class="successSubmission fadein fadeout">Song added</div>

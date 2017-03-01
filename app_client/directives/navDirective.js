@@ -7,8 +7,7 @@
     return {
       restrict: 'EA',
       templateUrl: '../templates/navigation.html',
-      controller: 'navCtrl',
-      scope: false
+      controller: 'navCtrl'
     };
   }
 

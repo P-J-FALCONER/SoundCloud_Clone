@@ -3,6 +3,8 @@ angular.module('soundcloud')
     $scope.isCollapsed = true;
     $scope.isCollapsed2 = true;
 
+    $cacheFactory('userCache')
+
     if($cacheFactory.get('userCache').get('user')){
       $scope.user = $cacheFactory.get('userCache').get('user');
       $scope.isLoggedIn = true;

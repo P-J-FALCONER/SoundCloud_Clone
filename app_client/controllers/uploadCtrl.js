@@ -1,6 +1,6 @@
 angular.module('soundcloud')
-  .controller('uploadCtrl', ['$http', '$scope', 'contentFactory', '$location', 'Upload', function($http, $scope, contentFactory, $location, Upload){
-    $scope.uploadFile = function(){
+  .controller('uploadCtrl', ['$http', '$timeout', '$scope', 'contentFactory', '$location', 'Upload', function($http, $timeout, $scope, contentFactory, $location, Upload){
+    $scope.uploadFile = function(form){
       Upload.upload({
             url: '/api/audio',
             method: 'post',
@@ -10,7 +10,20 @@ angular.module('soundcloud')
               image: $scope.image
             }
         }).then(function (resp) {
-            $scope.success = 'File uploaded'
+            $scope.success = true;
+            $timeout(function() {
+              // Loadind done here - Show message for 3 more seconds.
+              $timeout(function() {
+                $scope.success = false;
+                $scope.name = '';
+                $scope.image = '';
+                $scope.audioFile ='';
+                form.$setSubmitted(false);
+                form.$setPristine();
+                form.$setUntouched();
+              }, 1000);
+            }, 2000);
+
             console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
         }, function (resp) {
             console.log('Error status: ' + resp.status);
