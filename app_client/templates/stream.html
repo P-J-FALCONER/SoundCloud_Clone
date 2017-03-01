@@ -22,8 +22,8 @@
     </form>
     <div style="margin: 5%;" ng-repeat="user in users | limitTo:10 | orderBy:'following.length' | filter:search">
       <img src="{{user.image}}" class="img-circle" alt="following image" style="height: 4em;width: 4em;">
-      <h5 style="text-align: center;display: inline-block;"><a href="/#!/artist/{{user.username}}">{{user.username}}</a></h5>
       <span class="glyphicon glyphicon-plus" aria-hidden="true" style="font-size: 1em;"></span>
+      <a style="display: block;" href="/#!/artist/{{user.username}}">{{user.username}}</a>
     </div>
   </div>
 </div>
