@@ -5,7 +5,5 @@ angular.module('soundcloud')
      console.log(res.data);
      $scope.songs = res.data;
    });
-   $scope.play = function(song_id){
-     
-   }
+
   }])
