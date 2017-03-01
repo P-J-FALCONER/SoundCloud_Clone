@@ -7,11 +7,8 @@ function sendJSONResponse(res, status, data){
 
 module.exports.getCurrentUser = function(req, res){
   if(req.user){
-    console.log('found req.user');
-    console.log(req.user);
     return sendJSONResponse(res, 200, req.user);
   } else {
-    console.log('couldnt find it');
     return sendJSONResponse(res, 200, '');
   }
 }

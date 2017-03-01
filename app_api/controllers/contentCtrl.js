@@ -67,7 +67,6 @@ module.exports.getSongs = function(req, res){
 }
 
 module.exports.getAllUsers = function(req, res){
-  console.log('hey');
   User.find({}, function(err, users){
     if(err){
       console.log(err);

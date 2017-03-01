@@ -32,3 +32,16 @@ angular.module('soundcloud').config(function($routeProvider){
       activetab:'artist'
     }).otherwise('/')
 })
+
+// protect the profile route from unauthenticated users
+// angular.module('soundcloud').run(function($rootScope, $location, authFactory) {
+//   $rootScope.$on('$routeChangeStart', function(event, nextRoute, currentRoute) {
+//     if ($location.path() === '/upload'){
+//       authFactory.getCurrentUser().then(function(user){
+//         if(user.data == ''){
+//           $location.path('/');
+//         }
+//       })
+//     }
+//   });
+// })
