@@ -183,7 +183,7 @@ module.exports.getUserLikedSongs = function(req, res){
 }
 
 module.exports.getUserLikedAlbums = function(req, res){
-   Album.find({userLikes:{$all:[req.user._id]}}, function(err, albums){
+   Album.find({userLikes:{$all:[req.user._id]}}).populate('artist').exec(function(err, albums){
     if(err){
       console.log(err);
     }else{
