@@ -176,7 +176,6 @@ module.exports.getUserLikedSongs = function(req, res){
     if(err){
       console.log(err);
     }else{
-      console.log('LIKED SONGS---',songs);
       res.json(songs);
     }
   })
@@ -187,7 +186,6 @@ module.exports.getUserLikedAlbums = function(req, res){
     if(err){
       console.log(err);
     }else{
-      console.log('LIKED ALBUMS---',albums);
       res.json(albums);
     }
   })
@@ -214,19 +212,16 @@ module.exports.getStreamAlbums = function(req, res){
 }
 
 module.exports.likeSong = function(req, res){
-  console.log('in server')
   Song.update({_id:req.body.song_id},{ $push: { userLikes: req.user._id}}, function(err, liked_song){
     if(err){
       console.log(err);
     }else{
-      console.log(liked_song);
       res.json(liked_song);
     }
   })
 }
 
 module.exports.getArtist = function(req, res){
-  console.log(req.params.id)
   User.findOne({_id:req.params.id}, function(err, artist){
     if(err){
       console.log(err);
@@ -241,7 +236,6 @@ module.exports.getArtistSongs = function(req, res){
     if(err){
       console.log(err);
     }else{
-      console.log(songs);
       res.json(songs);
     }
   })
@@ -252,7 +246,6 @@ module.exports.getArtistAlbums = function(req, res){
     if(err){
       console.log(err);
     }else{
-      console.log(albums);
       res.json(albums);
     }
   })

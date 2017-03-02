@@ -11,17 +11,13 @@ angular.module('soundcloud')
       })
     }
     contentFactory.getStreamSongs().then(function(response){
-      console.log('STREAM SONGS---', response.data)
       $scope.streamSongs= response.data
     })
     contentFactory.getStreamAlbums().then(function(response){
-      console.log('STREAM ALBUMS--',response.data)
       $scope.streamAlbums= response.data
     })
     $scope.likeSong = function(song_id, index){
-      console.log('starting');
       contentFactory.likeSong(song_id).then(function(response){
-        console.log(response);
         $scope.streamSongs[index].userLikes.push($scope.user._id);
       })
     }
