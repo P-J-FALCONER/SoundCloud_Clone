@@ -1,7 +1,8 @@
 <h1>{{ artist_name }}</h1>
 <h3>Songs</h3>
+
 <div style="margin-bottom: 5%;" class="col-sm-9" ng-repeat="song in artist_songs">
-  <img src="{{ song.image }}" alt="Art" style="vertical-align: top;width: 10em;">
+  <img ng-src="{{ song.image }}" alt="Art" style="vertical-align: top;width: 10em;">
   <div style="display: inline-block;">
     <span class="glyphicon glyphicon-play" aria-hidden="true" style="font-size: 3em;"></span>
     <p>{{ artist_name }}</p>
@@ -12,9 +13,11 @@
     </form>
   </div>
 </div>
+
 <h3>Albums</h3>
+
 <div style="margin-bottom: 5%;" class="col-sm-9" ng-repeat="album in artist_albums">
-  <img src="{{ album.image }}" alt="Art" style="vertical-align: top;width: 10em;">
+  <img ng-src="{{ album.image }}" alt="Art" style="vertical-align: top;width: 10em;">
   <div style="display: inline-block;">
     <span class="glyphicon glyphicon-play" aria-hidden="true" style="font-size: 3em;"></span>
     <p>{{ artist_name }}</p>

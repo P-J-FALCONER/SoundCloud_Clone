@@ -16,7 +16,7 @@
       <td>{{$index+1}}</td>
       <td  ng-click="play(song)"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></td>
       <td>{{song.name}}</td>
-      <td>{{song.artist.username}}</td>
+      <td><a href="/#!/artist/{{song.artist._id}}">{{song.artist.username}}</a></td>
       <td>{{song.createdAt | date: 'mediumDate'}}</td>
       <td>{{song.userLikes.length }}</td>
       <td>{{song.plays}}</td>

@@ -224,3 +224,36 @@ module.exports.likeSong = function(req, res){
     }
   })
 }
+
+module.exports.getArtist = function(req, res){
+  console.log(req.params.id)
+  User.findOne({_id:req.params.id}, function(err, artist){
+    if(err){
+      console.log(err);
+    }else{
+      res.json(artist);
+    }
+  })
+}
+
+module.exports.getArtistSongs = function(req, res){
+  Song.find({artist:req.params.id}, function(err, songs){
+    if(err){
+      console.log(err);
+    }else{
+      console.log(songs);
+      res.json(songs);
+    }
+  })
+}
+
+module.exports.getArtistAlbums = function(req, res){
+  Album.find({artist:req.params.id}, function(err, albums){
+    if(err){
+      console.log(err);
+    }else{
+      console.log(albums);
+      res.json(albums);
+    }
+  })
+}

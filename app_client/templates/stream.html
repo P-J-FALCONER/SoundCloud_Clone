@@ -29,7 +29,7 @@
     <div style="margin: 5%;" ng-repeat="user in users | limitTo:5 | orderBy:'following.length' | filter:search track by $index">
       <img ng-src="{{user.image}}" class="img-circle" alt="following image" style="height: 4em;width: 4em;">
       <span class="glyphicon glyphicon-plus" aria-hidden="true" style="font-size: 1em;" ng-click="follow(user._id, $index)"></span>
-      <a style="display: block;" href="/#!/artist/{{user.username}}">{{user.username}}</a>
+      <a style="display: block;" href="/#!/artist/{{user._id}}">{{user.username}}</a>
     </div>
   </div>
 </div>

@@ -54,7 +54,5 @@ node server.js
   * upload album
   * add repost data to user page
   * have checkbox for uploading song vs album(multiple)
-  * display no likes for songs/albums in collection if we have none
   * create play increase functionality
-  * play song from body to music footer
-  * allow for filtering on top charts 
+  * play song from body to music footer 
