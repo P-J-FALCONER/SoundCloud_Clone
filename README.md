@@ -45,7 +45,6 @@ node server.js
 ```
 
 ## To-Do
-  * create artist/user page where public can view your stuff
   * update user profile image
   * add fade confirm screen for deleting user
   * add commenting functionality
