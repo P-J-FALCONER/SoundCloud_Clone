@@ -1,4 +1,4 @@
-# SoundCloud Clone ![alt text](https://github.com/P-J-FALCONER/SoundCloud_Clone/tree/master/app_client/static/img/LoudCloud.jpg "Logo")
+# SoundCloud Clone (LoudCloud) <img src="https://github.com/P-J-FALCONER/SoundCloud_Clone/blob/master/app_client/static/img/LoudCloud.jpg" alt="alt text" width="200" height="200">
 ## About
 ### This project is a clone of Soundcloud and using the MEAN Stack. It was created from start to finish in 5 days.
 ## Authors
