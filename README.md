@@ -45,17 +45,13 @@ node server.js
 ```
 
 ## To-Do
-  * create artist/user page where public can view your stuff
   * update user profile image
   * add fade confirm screen for deleting user
   * add commenting functionality
-  * add liking functionality
   * add repost functionality
   * complete stream
   * upload album
   * add repost data to user page
   * have checkbox for uploading song vs album(multiple)
-  * display no likes for songs/albums in collection if we have none
   * create play increase functionality
-  * play song from body to music footer
-  * allow for filtering on top charts 
+  * play song from body to music footer 

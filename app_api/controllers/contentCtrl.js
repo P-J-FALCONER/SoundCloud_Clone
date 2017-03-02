@@ -172,22 +172,80 @@ module.exports.getFollowing = function(req, res){
 }
 
 module.exports.getUserLikedSongs = function(req, res){
-  Song.find({userLikes:{$all:[req.user._id]}}, function(err, songs){
+  Song.find({userLikes:{$all:[req.user._id]}}).populate('artist').exec(function(err, songs){
     if(err){
       console.log(err);
     }else{
-      console.log('LIKED SONGS---',songs);
       res.json(songs);
     }
   })
 }
 
 module.exports.getUserLikedAlbums = function(req, res){
-   Album.find({userLikes:{$all:[req.user._id]}}, function(err, albums){
+   Album.find({userLikes:{$all:[req.user._id]}}).populate('artist').exec(function(err, albums){
     if(err){
       console.log(err);
     }else{
-      console.log('LIKED ALBUMS---',albums);
+      res.json(albums);
+    }
+  })
+}
+
+module.exports.getStreamSongs = function(req, res){
+  Song.find({artist: {$in:req.user.following}}).populate('artist').exec(function(err, songs){
+    if(err){
+      console.log(err);
+    }else{
+      res.json(songs);
+    }
+  })
+}
+
+module.exports.getStreamAlbums = function(req, res){
+  Album.find({artist: {$in:req.user.following}}).populate('artist').exec(function(err, albums){
+    if(err){
+      console.log(err);
+    }else{
+      res.json(albums);
+    }
+  })
+}
+
+module.exports.likeSong = function(req, res){
+  Song.update({_id:req.body.song_id},{ $push: { userLikes: req.user._id}}, function(err, liked_song){
+    if(err){
+      console.log(err);
+    }else{
+      res.json(liked_song);
+    }
+  })
+}
+
+module.exports.getArtist = function(req, res){
+  User.findOne({_id:req.params.id}, function(err, artist){
+    if(err){
+      console.log(err);
+    }else{
+      res.json(artist);
+    }
+  })
+}
+
+module.exports.getArtistSongs = function(req, res){
+  Song.find({artist:req.params.id}, function(err, songs){
+    if(err){
+      console.log(err);
+    }else{
+      res.json(songs);
+    }
+  })
+}
+
+module.exports.getArtistAlbums = function(req, res){
+  Album.find({artist:req.params.id}, function(err, albums){
+    if(err){
+      console.log(err);
+    }else{
       res.json(albums);
     }
   })

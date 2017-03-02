@@ -1,9 +1,12 @@
 <div>
   <h3>Liked Songs</h3>
+  <div class="thumbnail" ng-show="liked_songs.length==0">
+    <h4>You Have No Song Likes. Lets Get Out and Like Some Song</h4>
+  </div>
   <div class="thumbnail" style="display: inline-block;" ng-repeat="song in liked_songs">
-    <img src="{{ song.image }}" alt="..." width="150" />
+    <img ng-src="{{ song.image }}" alt="..." width="150" />
       <div class="caption post-content">
-        <h5>{{ song.artist }}</h5>
+        <h5><a href="/#!/artist/{{song.artist._id}}">{{ song.artist.username }}</a></h5>
         <p>{{ song.name }}</p>
       </div>
   </div>
@@ -11,10 +14,13 @@
 
 <div>
   <h3>Liked Albums</h3>
+  <div class="thumbnail" ng-show="liked_albums.length==0">
+    <h4>You Have No Album Likes. Lets Get Out and Like Some Albums</h4>
+  </div>
   <div class="thumbnail" style="display: inline-block;" ng-repeat="album in liked_albums">
   <img src="http://www.flat-e.com/flate5/wp-content/uploads/cover-960x857.jpg" alt="..." width="150" />
     <div class="caption post-content">
-      <h5>{{ album.artist }}</h5>
+      <h5><a href="/#!/artist/{{album.artist._id}}">{{ album.artist.username }}</a></h5>
       <p>{{ album.name }}</p>
     </div>
   </div>
@@ -24,7 +30,7 @@
   <h3>Following</h3>
   <!--ng-repeat over people user is following-->
   <div style="display: inline-block;margin-right: 5%;" ng-repeat="follow in following">
-    <img src="{{ follow.image }}" class="img-circle" alt="following image" style="height: 10em;width: 10em;">
+    <img ng-src="{{ follow.image }}" class="img-circle" alt="following image" style="height: 10em;width: 10em;">
     <h5 style="text-align: center;"><a href="">{{follow.username}}</a></h5>
   </div>
 </div>

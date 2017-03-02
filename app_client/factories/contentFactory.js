@@ -27,6 +27,24 @@ angular.module('soundcloud')
       },
       getUserLikedAlbums: function(){
         return $http.get('/api/user/likedalbums')
+      },
+      getStreamSongs: function(){
+        return $http.get('/api/stream/songs')
+      },
+      getStreamAlbums: function(){
+        return $http.get('/api/stream/albums')
+      },
+      likeSong: function(song_id){
+        return $http.patch('/api/like/song', {song_id:song_id})
+      },
+      getArtist: function(artist_id){
+        return $http.get('/api/artist/'+artist_id)
+      },
+      getArtistSongs: function(artist_id){
+        return $http.get('/api/artist/songs/'+artist_id)
+      },
+      getArtistAlbums: function(artist_id){
+        return $http.get('/api/artist/albums/'+artist_id)
       }
     }
   }])
