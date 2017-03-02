@@ -49,7 +49,6 @@ node server.js
   * update user profile image
   * add fade confirm screen for deleting user
   * add commenting functionality
-  * add liking functionality
   * add repost functionality
   * complete stream
   * upload album

@@ -17,7 +17,10 @@ router.get('/user/aggregates', contentController.getAggregates);
 router.delete('/user/delete', contentController.deleteUser);
 router.patch('/user/follow', contentController.followUser);
 router.get('/user/likedsongs', contentController.getUserLikedSongs);
-router.get('/user/likedalbums', contentController.getUserLikedSongs);
+router.get('/user/likedalbums', contentController.getUserLikedAlbums);
+router.get('/stream/songs', contentController.getStreamSongs);
+router.get('/stream/albums', contentController.getStreamAlbums);
+router.patch('/like/song', contentController.likeSong);
 
 
 module.exports = router;

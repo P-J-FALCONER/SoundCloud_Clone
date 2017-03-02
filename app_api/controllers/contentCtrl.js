@@ -172,7 +172,7 @@ module.exports.getFollowing = function(req, res){
 }
 
 module.exports.getUserLikedSongs = function(req, res){
-  Song.find({userLikes:{$all:[req.user._id]}}, function(err, songs){
+  Song.find({userLikes:{$all:[req.user._id]}}).populate('artist').exec(function(err, songs){
     if(err){
       console.log(err);
     }else{
@@ -189,6 +189,38 @@ module.exports.getUserLikedAlbums = function(req, res){
     }else{
       console.log('LIKED ALBUMS---',albums);
       res.json(albums);
+    }
+  })
+}
+
+module.exports.getStreamSongs = function(req, res){
+  Song.find({artist: {$in:req.user.following}}).populate('artist').exec(function(err, songs){
+    if(err){
+      console.log(err);
+    }else{
+      res.json(songs);
+    }
+  })
+}
+
+module.exports.getStreamAlbums = function(req, res){
+  Album.find({artist: {$in:req.user.following}}).populate('artist').exec(function(err, albums){
+    if(err){
+      console.log(err);
+    }else{
+      res.json(albums);
+    }
+  })
+}
+
+module.exports.likeSong = function(req, res){
+  console.log('in server')
+  Song.update({_id:req.body.song_id},{ $push: { userLikes: req.user._id}}, function(err, liked_song){
+    if(err){
+      console.log(err);
+    }else{
+      console.log(liked_song);
+      res.json(liked_song);
     }
   })
 }

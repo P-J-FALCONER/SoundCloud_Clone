@@ -3,7 +3,7 @@
   <div class="thumbnail" style="display: inline-block;" ng-repeat="song in liked_songs">
     <img src="{{ song.image }}" alt="..." width="150" />
       <div class="caption post-content">
-        <h5>{{ song.artist }}</h5>
+        <h5>{{ song.artist.username }}</h5>
         <p>{{ song.name }}</p>
       </div>
   </div>

@@ -1,16 +1,24 @@
 <h2>Stream</h2>
 <div class="row">
-  <div style="margin-bottom: 5%;" class="col-sm-9">
-    <img src="http://www.flat-e.com/flate5/wp-content/uploads/cover-960x857.jpg" alt="Art" width="21%" style="vertical-align: top;">
-    <div style="display: inline-block;">
-      <span class="glyphicon glyphicon-play" aria-hidden="true" style="font-size: 3em;"></span>
-      <p>Artist</p>
-      <p>Song Name</p>
-      <form ng-submit="comment(song_id)">
-        <input type="text" name="comment" placeholder="Comment Here">
-        <input type="submit" value="Comment">
-      </form>
-    </div>
+    <div style="margin-bottom: 5%;" class="col-sm-9">
+      
+      
+      <div ng-repeat="song in streamSongs track by $index" class="thumbnail">
+        <img ng-src="{{song.image}}" alt="Art" width="21%">
+        <div style="display: inline-block;">
+          <span class="glyphicon glyphicon-play" aria-hidden="true" style="font-size: 3em;"></span>
+          <span ng-click="likeSong(song._id, $index)" ng-show = "song.userLikes.indexOf(user._id)==-1"class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="font-size: 1.5em;"></span>
+          <p>{{song.artist.username}}</p>
+          <p>{{song.name}}</p>
+          <form ng-submit="comment(song_id)">
+            <input type="text" name="comment" placeholder="Comment Here">
+            <input type="submit" value="Comment">
+          </form>
+        </div>
+      </div>
+
+
+
   </div>
   <div class="col-sm-3">
     <!--filter by search and limit results to 10-->

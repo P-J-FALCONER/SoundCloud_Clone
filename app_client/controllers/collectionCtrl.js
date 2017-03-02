@@ -4,11 +4,11 @@ angular.module('soundcloud')
       $scope.following = response.data.following;
     })
     contentFactory.getUserLikedSongs().then(function(response){
-      console.log('ALBUM RESPONSE', response.data);
+      console.log('SONG RESPONSE', response.data);
       $scope.liked_songs = response.data;
     })
     contentFactory.getUserLikedAlbums().then(function(response){
-      console.log('SONG RESPONSE', response.data);
+      console.log('ALBUM RESPONSE', response.data);
       $scope.liked_albums = response.data;
     })
   }])
