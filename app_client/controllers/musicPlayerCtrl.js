@@ -4,8 +4,8 @@
     .module('soundcloud')
     .controller('musicPlayerCtrl', musicPlayerCtrl);
 
-  musicPlayerCtrl.$inject = ['$scope', '$rootScope', '$location', 'authFactory', '$cacheFactory', 'audioFactory', '$interval'];
-  function musicPlayerCtrl($scope, $rootScope, $location, authFactory, $cacheFactory, audioFactory, $interval) {
+  musicPlayerCtrl.$inject = ['$scope', '$rootScope', '$location', 'authFactory', '$cacheFactory', 'audioFactory', '$interval', 'contentFactory'];
+  function musicPlayerCtrl($scope, $rootScope, $location, authFactory, $cacheFactory, audioFactory, $interval, contentFactory) {
     if(angular.isUndefined($cacheFactory.get('userCache'))){
       $cacheFactory('userCache')
     }
@@ -51,6 +51,16 @@
     }
 
     $scope.play = function () {
+      $scope.isPaused = false;
+      contentFactory.addPlay($scope.song_ids[$scope.currentIndex]).then(function(updatedSong){
+        console.log('called');
+        $rootScope.$emit('updateDOM', {
+          index: $scope.currentIndex
+        })
+      }).catch(function(err){
+        console.log(err);
+      })
+
       if(!$scope.trackList){
         return false;
       }
@@ -60,7 +70,6 @@
         audioFactory.play();
       }
       $scope.intervals.push($interval(function(){
-        $scope.isPaused = false;
         if(audioFactory.duration > $scope.seconds && !$scope.isPaused){
           $scope.seconds += 1;
           $scope.elapsed = ($scope.seconds / audioFactory.duration)* 100 + '%';
@@ -91,8 +100,8 @@
     })
 
     $scope.pause = function () {
-      $scope.currentTime = $scope.seconds;
       $scope.isPaused = true;
+      $scope.currentTime = $scope.seconds;
       $scope.clearIntervals();
       audioFactory.pause();
     }
@@ -100,10 +109,12 @@
     $scope.previous = function () {
       $scope.reset();
       $scope.clearIntervals();
+      console.log($scope.currentIndex);
       if ($scope.currentIndex > 0) {
-          $scope.currentIndex--;
-          $scope.currentTrackName = $scope.trackNames[$scope.currentIndex]
-          $scope.play();
+        console.log('executed');
+        $scope.currentIndex--;
+        $scope.currentTrackName = $scope.trackNames[$scope.currentIndex]
+        $scope.play();
       }
     }
     $scope.currentTime = audioFactory.currentTime;
@@ -111,7 +122,7 @@
     $scope.next = function () {
       $scope.reset();
       $scope.clearIntervals();
-      if ($scope.currentIndex < $scope.trackList.length) {
+      if ($scope.currentIndex < $scope.trackList.length - 1) {
         $scope.currentIndex++;
         $scope.currentTrackName = $scope.trackNames[$scope.currentIndex]
         $scope.play();
@@ -119,6 +130,7 @@
     }
 
     $rootScope.$on('addTop50', function(event, data) {
+      $scope.song_ids = data.song_ids
       $scope.trackList = data.songs
       $scope.trackNames = data.names
       $scope.currentTrackName = $scope.trackNames[$scope.currentIndex]

@@ -48,6 +48,9 @@ angular.module('soundcloud')
       },
       comment: function(song_id, comment, time){
           return $http.post('/api/comment', {song_id:song_id, comment:comment, time:time})
+      },
+      addPlay: function(song_id){
+        return $http.put('/api/songs/'+song_id, {})
       }
     }
   }])

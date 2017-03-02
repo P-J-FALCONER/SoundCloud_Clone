@@ -12,6 +12,7 @@ router.delete('/user', authController.logout);
 router.get('/user/following', contentController.getFollowing);
 router.post('/audio', multipartMiddleware, contentController.addAudio);
 router.get('/songs', contentController.getSongs);
+router.put('/songs/:song_id', contentController.addPlay);
 router.get('/allusers', contentController.getAllUsers);
 router.get('/user/aggregates', contentController.getAggregates);
 router.delete('/user/delete', contentController.deleteUser);

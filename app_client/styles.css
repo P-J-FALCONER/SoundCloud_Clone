@@ -42,13 +42,18 @@ body {
     opacity: 1;
 }
 
-.footer{
-  background: gray;
-  height: 50px;
+.navbar-fixed-bottom{
+  background: #cbcbcb;
+  height: 70px;
+  padding: 5px;
 }
 .links{
   display: inline-block;
-  width: 10%;
+  width: 15%;
+}
+.links a .glyphicon{
+  font-size: 35px;
+  color: #75D6FF;
 }
 .playbar{
   position: relative;
@@ -56,11 +61,18 @@ body {
   display: inline-block;
   height: 20px;
   background: white;
-  width: 100%;
+  width: 75% !important;
 }
 .fill{
   height: 20px;
   position: absolute;
   background: yellow;
   width: 0%;
+}
+@media screen and (max-width: 800px){
+  .links a .glyphicon{
+    font-size: 12px;
+  }
+  .playbar{
+  }
 }
