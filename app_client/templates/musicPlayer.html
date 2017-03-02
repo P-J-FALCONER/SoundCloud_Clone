@@ -1,8 +1,14 @@
-<footer ng-show='user'>
+<footer>
   <div class="footer navbar-fixed-bottom">
-    <a ng-click="previous()"><span class="glyphicon glyphicon-step-backward"></span></a>
-    <a ng-click="play()"><span class="glyphicon glyphicon-play"></span></a>
-    <a ng-click="pause()"><span class="glyphicon glyphicon-pause"></span></a>
-    <a ng-click="next()"><span class="glyphicon glyphicon-step-forward"></span></a>
+    <div class="links">
+      <a ng-click="previous()"><span class="glyphicon glyphicon-step-backward"></span></a>
+      <a ng-click="play()"><span class="glyphicon glyphicon-play"></span></a>
+      <a ng-click="pause()"><span class="glyphicon glyphicon-pause"></span></a>
+      <a ng-click="next()"><span class="glyphicon glyphicon-step-forward"></span></a>
+    </div>
+    <div class="playbar">
+      <span ng-style='{"width": elapsed}' class="fill"></span>
+      <p>Playing... {{ song.name }}</p>
+    </div>
   </div>
 </footer>

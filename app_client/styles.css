@@ -41,3 +41,26 @@ body {
 .fadein.ng-hide-remove.ng-hide-remove-active {
     opacity: 1;
 }
+
+.footer{
+  background: gray;
+  height: 50px;
+}
+.links{
+  display: inline-block;
+  width: 10%;
+}
+.playbar{
+  position: relative;
+  width: 88% !important;
+  display: inline-block;
+  height: 20px;
+  background: white;
+  width: 100%;
+}
+.fill{
+  height: 20px;
+  position: absolute;
+  background: yellow;
+  width: 0%;
+}
