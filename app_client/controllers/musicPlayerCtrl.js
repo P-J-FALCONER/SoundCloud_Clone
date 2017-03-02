@@ -28,46 +28,70 @@
 
     $scope.trackList = [];
 
+    $scope.intervals = [];
+
     $scope.currentIndex = 0
+
+    $scope.currentTime = 0;
 
     $scope.seconds = 0;
 
+    $scope.reset = function(){
+      $scope.currentTime = 0;
+      $scope.seconds = 0;
+      $scope.elapsed = '0%'
+    }
+
+    $scope.clearIntervals = function(){
+      angular.forEach($scope.intervals, function(interval) {
+        $interval.cancel(interval);
+      });
+    }
+
     $scope.play = function () {
-      $scope.isPaused = false;
+      if(!$scope.trackList){
+        return false;
+      }
       audioFactory.src = $scope.trackList[$scope.currentIndex];
       if(audioFactory.src){
+        audioFactory.currentTime = $scope.currentTime
         audioFactory.play();
       }
-      var timer = $interval(function(){
-        if(audioFactory.duration > $scope.seconds && !audioFactory.paused){
+      $scope.intervals.push($interval(function(){
+        $scope.isPaused = false;
+        if(audioFactory.duration > $scope.seconds && !$scope.isPaused){
           $scope.seconds += 1;
-          console.log($scope.seconds, audioFactory.duration);
+          $scope.elapsed = ($scope.seconds / audioFactory.duration)* 100 + '%';
         } else {
-          console.log('cancelled timer');
+          $scope.clearIntervals()
+          if($scope.isPaused){
+            $scope.currentTime = $scope.seconds;
+            return false;
+          }
           $scope.currentIndex++;
-          $interval.cancel(timer);
-          $scope.seconds = 0;
-          if($scope.trackList.length > $scope.currentIndex){
-            console.log('lets keep this party going!');
-            $scope.play()
-          } else {
-            console.log('lets start this thang over');
-            currentIndex = 0;
+          if(audioFactory.duration < $scope.seconds){
+            $scope.reset()
+            if($scope.trackList.length > $scope.currentIndex){
+              $scope.play()
+            } else {
+              $scope.currentIndex = 0;
+            }
           }
         }
-      }, 1000)
+      }, 1000))
+
     }
 
     $scope.pause = function () {
-      $scope.isPaused = !$scope.isPaused;
-      if ($scope.isPaused) {
-          audioFactory.pause();
-      } else {
-          audioFactory.play();
-      }
+      $scope.currentTime = $scope.seconds;
+      $scope.isPaused = true;
+      $scope.clearIntervals();
+      audioFactory.pause();
     }
 
     $scope.previous = function () {
+      $scope.reset();
+      $scope.clearIntervals();
       if ($scope.currentIndex > 0) {
           $scope.currentIndex--;
           $scope.play();
@@ -76,28 +100,21 @@
     $scope.currentTime = audioFactory.currentTime;
 
     $scope.next = function () {
-      if ($scope.currentIndex < myPlayer.trackList.length) {
-          $scope.currentIndex++;
-          $scope.play();
+      $scope.reset();
+      $scope.clearIntervals();
+      if ($scope.currentIndex < $scope.trackList.length) {
+        $scope.currentIndex++;
+        $scope.play();
       }
     }
 
-    $rootScope.$on('loggedOut', function(event, data) {
-      console.log('logged out');
-      $scope.user = '';
-      player.stop()
-    });
-
     $rootScope.$on('addTop50', function(event, data) {
-      console.log(data);
       $scope.trackList = data.songs
-      console.log($scope.trackList);
-      console.log($scope.currentIndex);
     });
 
     $rootScope.$on('trackPlay', function(event, data) {
+      $scope.reset();
       var trackIndex = $scope.trackList.indexOf(data.song.audio);
-      console.log(trackIndex);
       $scope.currentIndex = trackIndex;
       $scope.play()
     });

@@ -26,7 +26,6 @@ angular.module('soundcloud')
         .then(function(response){
           $cacheFactory.get('userCache').remove('user')
           $scope.isLoggedIn = false;
-          $rootScope.$emit('loggedOut');
           $location.url('/')
         })
         .catch(function(err){
