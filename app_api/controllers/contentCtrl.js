@@ -70,6 +70,7 @@ module.exports.addAudio = function(req, res){
 
         fs.writeFile(path.join(__dirname, '/../../app_client/static/img/songs/', song._id + ext), image, "base64", function (writeErr) {
           song.image = 'static/img/songs/' + song._id + ext
+          song.audio = 'static/audio/' + song._id + audioExt
           song.save(function(err, song){
             sendJSONResponse(res, 201, song);
           })
@@ -93,7 +94,7 @@ module.exports.getSongs = function(req, res){
 }
 
 module.exports.getAllUsers = function(req, res){
-  
+
   User.find({_id:{$nin: req.user.following}}, function(err, users){
     if(err){
       console.log(err);

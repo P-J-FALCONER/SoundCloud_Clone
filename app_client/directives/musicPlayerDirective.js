@@ -7,7 +7,7 @@
     return {
       restrict: 'EA',
       templateUrl: '../templates/musicPlayer.html',
-      controller: 'musicPlayerCtrl as musicvm'
+      controller: 'musicPlayerCtrl'
     };
   }
 

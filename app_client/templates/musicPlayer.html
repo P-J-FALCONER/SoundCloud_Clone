@@ -1,7 +1,8 @@
 <footer ng-show='user'>
   <div class="footer navbar-fixed-bottom">
-    <audio controls style="width: 100%;">
-      <source ng-src="{{ audioSrc }}" type="audio/mp3" />
-    </audio>
+    <a ng-click="previous()"><span class="glyphicon glyphicon-step-backward"></span></a>
+    <a ng-click="play()"><span class="glyphicon glyphicon-play"></span></a>
+    <a ng-click="pause()"><span class="glyphicon glyphicon-pause"></span></a>
+    <a ng-click="next()"><span class="glyphicon glyphicon-step-forward"></span></a>
   </div>
 </footer>
