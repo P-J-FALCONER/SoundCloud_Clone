@@ -45,6 +45,9 @@ angular.module('soundcloud')
       },
       getArtistAlbums: function(artist_id){
         return $http.get('/api/artist/albums/'+artist_id)
+      },
+      addPlay: function(song_id){
+        return $http.put('/api/songs/'+song_id, {})
       }
     }
   }])

@@ -2,8 +2,8 @@
   <div class="footer navbar-fixed-bottom">
     <div class="links">
       <a ng-click="previous()"><span class="glyphicon glyphicon-step-backward"></span></a>
-      <a ng-click="play()"><span class="glyphicon glyphicon-play"></span></a>
-      <a ng-click="pause()"><span class="glyphicon glyphicon-pause"></span></a>
+      <a ng-if='isPaused' ng-click="play()"><span class="glyphicon glyphicon-play"></span></a>
+      <a ng-if='!isPaused' ng-click="pause()"><span class="glyphicon glyphicon-pause"></span></a>
       <a ng-click="next()"><span class="glyphicon glyphicon-step-forward"></span></a>
     </div>
     <div class="playbar">

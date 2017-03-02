@@ -250,3 +250,24 @@ module.exports.getArtistAlbums = function(req, res){
     }
   })
 }
+
+module.exports.addPlay = function(req, res){
+  console.log('in server');
+  Song.findOne({_id: req.params.song_id}).populate('artist').exec(function(err, song){
+    console.log(song);
+    if(err){
+      return sendJSONResponse(res, 400, err)
+    }
+    if(!song){
+      return sendJSONResponse(res, 404, 'No song found')
+    }
+    song.plays += 1;
+    song.save(function(err, song){
+      if(err){
+        console.log(err);
+        return sendJSONResponse(res, 400, err)
+      }
+      sendJSONResponse(res, 200, song)
+    })
+  })
+}
