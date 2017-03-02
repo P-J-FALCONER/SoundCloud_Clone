@@ -1,5 +1,5 @@
 angular.module('soundcloud')
-  .controller('artistCtrl', ['$scope','contentFactory', '$location','$routeParams', function($scope, contentFactory, $location, $routeParams){
+  .controller('artistCtrl', ['$scope','contentFactory', '$location','$routeParams','$cacheFactory','authFactory', function($scope, contentFactory, $location, $routeParams, $cacheFactory, authFactory){
     $scope.artist_id = $routeParams.id;
     $scope.artist_songs = [];
     $scope.artist_albums = [];
@@ -14,4 +14,23 @@ angular.module('soundcloud')
     contentFactory.getArtistAlbums($scope.artist_id).then(function(response){
       $scope.artist_albums = response.data;
     })
+    $scope.likeSong = function(song_id, index){
+      contentFactory.likeSong(song_id).then(function(response){
+        $scope.artist_songs[index].userLikes.push($scope.user._id);
+      })
+    }
+    if(angular.isUndefined($cacheFactory.get('userCache'))){
+      $cacheFactory('userCache')
+    }
+    if($cacheFactory.get('userCache').get('user')){
+      $scope.user = $cacheFactory.get('userCache').get('user');
+    } else {
+      authFactory.getCurrentUser().then(function(response){
+        if(response.data){
+          $scope.user = response.data;
+        }
+      }).catch(function(err){
+        console.log(err);
+      })
+    }
   }])

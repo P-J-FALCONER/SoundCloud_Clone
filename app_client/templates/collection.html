@@ -4,7 +4,7 @@
     <h4>You Have No Song Likes. Lets Get Out and Like Some Song</h4>
   </div>
   <div class="thumbnail" style="display: inline-block;" ng-repeat="song in liked_songs">
-    <img src="{{ song.image }}" alt="..." width="150" />
+    <img ng-src="{{ song.image }}" alt="..." width="150" />
       <div class="caption post-content">
         <h5><a href="/#!/artist/{{song.artist._id}}">{{ song.artist.username }}</a></h5>
         <p>{{ song.name }}</p>
@@ -30,7 +30,7 @@
   <h3>Following</h3>
   <!--ng-repeat over people user is following-->
   <div style="display: inline-block;margin-right: 5%;" ng-repeat="follow in following">
-    <img src="{{ follow.image }}" class="img-circle" alt="following image" style="height: 10em;width: 10em;">
+    <img ng-src="{{ follow.image }}" class="img-circle" alt="following image" style="height: 10em;width: 10em;">
     <h5 style="text-align: center;"><a href="">{{follow.username}}</a></h5>
   </div>
 </div>

@@ -1,10 +1,10 @@
 <h1>{{ artist_name }}</h1>
 <h3>Songs</h3>
-
-<div style="margin-bottom: 5%;" class="col-sm-9" ng-repeat="song in artist_songs">
+<div style="margin-bottom: 5%;" ng-repeat="song in artist_songs">
   <img ng-src="{{ song.image }}" alt="Art" style="vertical-align: top;width: 10em;">
   <div style="display: inline-block;">
     <span class="glyphicon glyphicon-play" aria-hidden="true" style="font-size: 3em;"></span>
+    <span ng-click="likeSong(song._id, $index)" ng-show = "song.userLikes.indexOf(user._id)==-1"class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="font-size: 1.5em;"></span>
     <p>{{ artist_name }}</p>
     <p>{{ song.name }}</p>
     <form ng-submit="comment(song._id)">
@@ -13,10 +13,12 @@
     </form>
   </div>
 </div>
+<div class="thumbnail" ng-show="artist_songs.length==0">
+  <h4>Artist Has No Songs</h4>
+</div>
 
 <h3>Albums</h3>
-
-<div style="margin-bottom: 5%;" class="col-sm-9" ng-repeat="album in artist_albums">
+<div style="margin-bottom: 5%;"ng-repeat="album in artist_albums">
   <img ng-src="{{ album.image }}" alt="Art" style="vertical-align: top;width: 10em;">
   <div style="display: inline-block;">
     <span class="glyphicon glyphicon-play" aria-hidden="true" style="font-size: 3em;"></span>
@@ -27,4 +29,7 @@
       <input type="submit" value="Comment">
     </form>
   </div>
+</div>
+<div class="thumbnail" ng-show="artist_albums.length==0">
+  <h4>Artist Has No Albums</h4>
 </div>
