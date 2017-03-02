@@ -10,7 +10,6 @@ function sendJSONResponse(res, status, data){
 }
 
 module.exports.addAudio = function(req, res){
-  console.log('in server');
   // if(!req.user._id){
   //   sendJSONResponse(res, 400, 'Please log in on our site.')
   // }
@@ -88,7 +87,6 @@ module.exports.getSongs = function(req, res){
       console.log(err);
       sendJSONResponse(res,400,err);
     }else{
-      console.log(songs);
       res.json(songs);
     }
   })
@@ -107,15 +105,12 @@ module.exports.getAllUsers = function(req, res){
 }
 
 module.exports.getAggregates = function(req, res){
-  console.log('in server');
-  console.log(req.user);
   var results = {};
-  Song.count({artist: req.user._id}, function(err, songcount){
+  Song.count({artist: req.user.id}, function(err, songcount){
     if(err){
       console.log(err)
     }else{
       results.uploaded_songs = songcount;
-      console.log(results);
       Album.count({artist:req.user._id}, function(err, albumcount){
         if(err){
           console.log(err);
@@ -157,10 +152,42 @@ module.exports.deleteUser = function(req, res){
 }
 
 module.exports.followUser = function(req, res){
-  console.log('FOLLOWID--',req.body.followid)
-  User.update({_id:req.user.id},{ $push: { following: req.body.followid }},function(err, result){
+  User.update({_id:req.user._id},{ $push: { following: req.body.followid }},function(err, result){
     console.log('error---',err);
     console.log('results---',result)
     res.json(result);
+  })
+}
+
+module.exports.getFollowing = function(req, res){
+  console.log('hit server');
+  User.findOne({_id:req.user._id}).populate('following').exec(function (err, following) {
+    if(err){
+      console.log(err)
+    }else{
+      res.json(following);
+    }
+  })
+}
+
+module.exports.getUserLikedSongs = function(req, res){
+  Song.find({userLikes:{$all:[req.user._id]}}, function(err, songs){
+    if(err){
+      console.log(err);
+    }else{
+      console.log('LIKED SONGS---',songs);
+      res.json(songs);
+    }
+  })
+}
+
+module.exports.getUserLikedAlbums = function(req, res){
+   Album.find({userLikes:{$all:[req.user._id]}}, function(err, albums){
+    if(err){
+      console.log(err);
+    }else{
+      console.log('LIKED ALBUMS---',albums);
+      res.json(albums);
+    }
   })
 }

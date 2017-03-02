@@ -9,11 +9,15 @@ var multipartMiddleware = multipart({ uploadDir: path.join(__dirname, '..', '..'
 router.get('/user', authController.getCurrentUser);
 router.delete('/user', authController.logout);
 
+router.get('/user/following', contentController.getFollowing);
 router.post('/audio', multipartMiddleware, contentController.addAudio);
 router.get('/songs', contentController.getSongs);
 router.get('/allusers', contentController.getAllUsers);
 router.get('/user/aggregates', contentController.getAggregates);
 router.delete('/user/delete', contentController.deleteUser);
 router.patch('/user/follow', contentController.followUser);
+router.get('/user/likedsongs', contentController.getUserLikedSongs);
+router.get('/user/likedalbums', contentController.getUserLikedSongs);
+
 
 module.exports = router;

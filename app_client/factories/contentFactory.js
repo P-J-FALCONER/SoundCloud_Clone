@@ -18,6 +18,15 @@ angular.module('soundcloud')
       },
       followUser: function(id){
         return $http.patch('/api/user/follow', {followid:id})
+      },
+      getFollowing: function(){
+        return $http.get('/api/user/following')
+      },
+      getUserLikedSongs: function(){
+        return $http.get('/api/user/likedsongs')
+      },
+      getUserLikedAlbums: function(){
+        return $http.get('/api/user/likedalbums')
       }
     }
   }])
