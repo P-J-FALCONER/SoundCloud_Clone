@@ -14,6 +14,9 @@ var SongSchema = new mongoose.Schema({
     type: String,
     default: 'static/img/no_pic.png'
   },
+  audio: {
+    type: String
+  },
   name: {
     type:String
   },
