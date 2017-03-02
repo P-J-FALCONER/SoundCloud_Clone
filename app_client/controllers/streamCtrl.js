@@ -1,5 +1,5 @@
 angular.module('soundcloud')
-  .controller('streamCtrl', ['$scope','contentFactory', '$location','$cacheFactory','authFactory', function($scope, contentFactory, $location, $cacheFactory, authFactory){
+  .controller('streamCtrl', ['$scope','contentFactory', '$location','$cacheFactory','authFactory','$rootScope', function($scope, contentFactory, $location, $cacheFactory, authFactory, $rootScope){
     $scope.users = [];
     $scope.likeIndex = [];
     contentFactory.getUsers().then(function(res){
@@ -20,6 +20,22 @@ angular.module('soundcloud')
       contentFactory.likeSong(song_id).then(function(response){
         $scope.streamSongs[index].userLikes.push($scope.user._id);
       })
+    }
+
+    $scope.$on('currentTime', function(event, data) {
+      $scope.time= data.time;
+    })
+
+
+    $scope.makeComment = function(song_id, songComment){
+      $rootScope.$emit('comment', true);
+      var currentTime = $rootScope.$on('currentTime', function(event,data){
+        $scope.time=data;
+        contentFactory.comment(song_id, songComment, $scope.time).then(function(response){
+        })
+        currentTime();
+      })
+      
     }
     if(angular.isUndefined($cacheFactory.get('userCache'))){
       $cacheFactory('userCache')

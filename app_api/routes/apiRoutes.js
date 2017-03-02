@@ -24,5 +24,6 @@ router.patch('/like/song', contentController.likeSong);
 router.get('/artist/:id', contentController.getArtist);
 router.get('/artist/songs/:id', contentController.getArtistSongs);
 router.get('/artist/albums/:id', contentController.getArtistAlbums);
+router.post('/comment', contentController.comment);
 
 module.exports = router;

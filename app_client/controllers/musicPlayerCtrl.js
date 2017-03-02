@@ -83,6 +83,12 @@
         }
       }, 1000))
     }
+    
+    $rootScope.$on('comment', function(event, data){
+      if(data){
+        $rootScope.$emit('currentTime', $scope.seconds); 
+      }
+    })
 
     $scope.pause = function () {
       $scope.currentTime = $scope.seconds;

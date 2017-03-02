@@ -2,11 +2,11 @@ var mongoose = require('mongoose');
 
 var CommentSchema = new mongoose.Schema({
   song: {
-    type: mongoose.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'Song'
   },
   user: {
-    type: mongoose.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
   comment: {
@@ -15,7 +15,8 @@ var CommentSchema = new mongoose.Schema({
   },
   timeInSong: {
     type: Number,
-    required: true
+    required: true,
+    default:0
   }
 }, {
   timestamps: true
