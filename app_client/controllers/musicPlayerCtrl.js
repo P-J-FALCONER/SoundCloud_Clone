@@ -34,6 +34,8 @@
 
     $scope.currentTime = 0;
 
+    // $scope.currentTrackStatus =
+
     $scope.seconds = 0;
 
     $scope.reset = function(){
@@ -69,6 +71,7 @@
             return false;
           }
           $scope.currentIndex++;
+          $scope.currentTrackName = $scope.trackNames[$scope.currentIndex]
           if(audioFactory.duration < $scope.seconds){
             $scope.reset()
             if($scope.trackList.length > $scope.currentIndex){
@@ -79,7 +82,6 @@
           }
         }
       }, 1000))
-
     }
 
     $scope.pause = function () {
@@ -94,6 +96,7 @@
       $scope.clearIntervals();
       if ($scope.currentIndex > 0) {
           $scope.currentIndex--;
+          $scope.currentTrackName = $scope.trackNames[$scope.currentIndex]
           $scope.play();
       }
     }
@@ -104,18 +107,22 @@
       $scope.clearIntervals();
       if ($scope.currentIndex < $scope.trackList.length) {
         $scope.currentIndex++;
+        $scope.currentTrackName = $scope.trackNames[$scope.currentIndex]
         $scope.play();
       }
     }
 
     $rootScope.$on('addTop50', function(event, data) {
       $scope.trackList = data.songs
+      $scope.trackNames = data.names
+      $scope.currentTrackName = $scope.trackNames[$scope.currentIndex]
     });
 
     $rootScope.$on('trackPlay', function(event, data) {
       $scope.reset();
       var trackIndex = $scope.trackList.indexOf(data.song.audio);
       $scope.currentIndex = trackIndex;
+      $scope.currentTrackName = $scope.trackNames[$scope.currentIndex]
       $scope.play()
     });
 
