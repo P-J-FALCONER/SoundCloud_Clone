@@ -5,6 +5,9 @@
 .success{
   color: green;
 }
+.oauth{
+  margin-top: 10px;
+}
 
 /* NAVBAR */
 .userImg{

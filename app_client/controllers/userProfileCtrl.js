@@ -1,5 +1,5 @@
 angular.module('soundcloud')
-  .controller('userProfileCtrl', ['$scope','$rootScope', 'contentFactory', '$location', function($scope, $rootScope, contentFactory, $location){
+  .controller('userProfileCtrl', ['$scope','$rootScope', 'contentFactory', '$location', '$uibModal', function($scope, $rootScope, contentFactory, $location, $uibModal){
     contentFactory.getAggregateStats().then(function(stats){
       $scope.stats = stats.data;
     }).catch(function(err){
@@ -17,4 +17,23 @@ angular.module('soundcloud')
         console.log(err);
       })
     }
+
+    $scope.popupDeleteForm = function () {
+      var modalInstance = $uibModal.open({
+        templateUrl: '/templates/deleteModal.html',
+        controller: 'deleteModalCtrl'
+        // resolve : {
+        //   locationData : function () {
+        //     return {
+        //       locationid : vm.locationid,
+        //       locationName : vm.data.location.name
+        //     };
+        //   }
+        // }
+      });
+
+      modalInstance.result.then(function (data) {
+        $location.url('/')
+      });
+    };
   }])
