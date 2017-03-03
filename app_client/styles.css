@@ -13,9 +13,16 @@
   top: 50%;
   padding: 50px;
 }
-.thumbnail img{
+.panel-body{
+  text-align: center;
+}
+.panel-body img{
   height: 70px !important;
-  width: 70px !important;
+  max-width: 120px !important;
+}
+.panel{
+   padding-right: 0px !important;
+   padding-left: 0px !important;
 }
 /* NAVBAR */
 .userImg{
