@@ -1,6 +1,6 @@
-<div>
-  <h3>Liked Songs</h3>
-  <div ng-repeat="song in liked_songs" class="panel panel-default col-sm-6 col-md-3">
+<h3>Liked Songs</h3>
+<div class="">
+  <div ng-repeat="song in liked_songs" class="panel panel-default col-xs-12 col-sm-6 col-md-4">
     <div class="panel-heading">{{ song.name }}</div>
     <div class="collection panel-body">
      <img ng-src="{{ song.image }}" alt ="Generic placeholder thumbnail">
@@ -9,13 +9,16 @@
      </h5>
     </div>
   </div>
-  <div ng-show="liked_songs.length == 0" style="text-align: center;" class="thumbnail"><h4>You Have No Liked Songs</h4></div>
 </div>
-<br>
-<div>
+
+<div class="">
+
+</div>
+<div ng-show="liked_songs.length == 0"class="thumbnail"><h4>You Have No Liked Songs</h4></div>
+<div class="col-xs-12">
   <h3>Following</h3>
-  <div style="display: inline-block;margin-right: 5%;" ng-repeat="follow in following">
+  <div ng-repeat="follow in following">
     <img ng-src="{{ follow.image }}" class="img-circle" alt="following image" style="height: 7em;width: 7em;">
-    <h5 style="text-align: center;"><a href="/#!/artist/{{follow._id}}">{{follow.username}}</a></h5>
+    <h5><a href="/#!/artist/{{follow._id}}">{{follow.username}}</a></h5>
   </div>
 </div>
