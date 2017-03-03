@@ -131,13 +131,15 @@
     $scope.shaveList = function(){
       console.log($scope.trackList, $scope.trackNames, $scope.song_ids);
       if($scope.trackList.length > 0){
-        $scope.trackList = [$scope.trackList[0]]
-        $scope.trackNames = [$scope.trackNames[0]]
-        $scope.song_ids = [$scope.song_ids[0]]
+        $scope.trackList = [$scope.trackList[$scope.currentIndex]]
+        $scope.trackNames = [$scope.trackNames[$scope.currentIndex]]
+        $scope.song_ids = [$scope.song_ids[$scope.currentIndex]]
+        $scope.currentTrackName = $scope.trackNames[$scope.currentIndex]
       } else {
         $scope.trackList = []
         $scope.trackNames = []
         $scope.song_ids = []
+        $scope.currentTrackName = ''
       }
     }
 
@@ -147,8 +149,6 @@
       $scope.song_ids = ($scope.song_ids).concat(data.song_ids)
       $scope.trackList = ($scope.trackList).concat(data.songs)
       $scope.trackNames = ($scope.trackNames).concat(data.names)
-      console.log($scope.trackNames);
-      $scope.currentTrackName = $scope.trackNames[$scope.currentIndex]
     });
 
     $rootScope.$on('addStream', function(event, data) {
@@ -157,8 +157,6 @@
       $scope.song_ids = ($scope.song_ids).concat(data.song_ids)
       $scope.trackList = ($scope.trackList).concat(data.songs)
       $scope.trackNames = ($scope.trackNames).concat(data.names)
-      console.log($scope.trackNames);
-      $scope.currentTrackName = $scope.trackNames[$scope.currentIndex]
     });
 
     $rootScope.$on('trackPlay', function(event, data) {
