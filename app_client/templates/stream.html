@@ -10,7 +10,7 @@
           <p><a href="/#!/artist/{{song.artist._id}}">{{song.artist.username}}</a></p>
           <p>{{song.name}}</p>
           
-          <div><!--hide when song is not playing-->
+          <div ng-show="playingSongComments == song.name"><!--hide when song is not playing-->
             <form ng-submit="makeComment(song._id, songComment)">
               <input type="text" name="comment" placeholder="Comment Here" ng-model="songComment">
               <input type="submit" value="Comment">

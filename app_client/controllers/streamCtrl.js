@@ -61,7 +61,11 @@ angular.module('soundcloud')
       })
     }
 
+    $rootScope.$on('nextTrack', function(event, data){
+      $scope.playingSongComments = data
+    })
     $scope.play = function(song){
+      $scope.playingSongComments = song.name
       $rootScope.$emit('trackPlay', {
         song: song
       });
