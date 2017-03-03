@@ -89,31 +89,47 @@ body {
 .links{
   display: inline-block;
   width: 15%;
+  text-align: center;
 }
 .links a .glyphicon{
   font-size: 35px;
   color: #75D6FF;
+  border: 3px solid white;
 }
 .playbar{
+  border-radius: 5px;
   position: relative;
   width: 88% !important;
   display: inline-block;
-  height: 20px;
+  height: 28px;
   background: white;
   width: 75% !important;
+  bottom: 15px;
+  margin-left:15px;
 }
 .fill{
-  height: 20px;
+  border-radius: 5px;
+  height: 28px;
   position: absolute;
   background: yellow;
   width: 0%;
+  max-width: 100%
 }
 .sidebar{
   text-align: center;
 }
-@media screen and (max-width: 800px){
+
+@media screen and (max-width: 1090px){
+  .links{
+    width: 30%
+  }
   .links a .glyphicon{
-    font-size: 12px;
+    font-size: 18px;
+  }
+  .playbar{
+    width: 62% !important;
+    bottom: 2px;
+    margin-left: 16px;
   }
 
 }

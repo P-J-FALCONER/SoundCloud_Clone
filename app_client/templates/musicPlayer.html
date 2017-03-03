@@ -5,12 +5,10 @@
       <a ng-if='isPaused' ng-click="play()"><span class="glyphicon glyphicon-play"></span></a>
       <a ng-if='!isPaused' ng-click="pause()"><span class="glyphicon glyphicon-pause"></span></a>
       <a ng-click="next()"><span class="glyphicon glyphicon-step-forward"></span></a>
+      <p>{{ currentTrackName }}</p>
     </div>
     <div class="playbar">
       <span ng-style='{"width": elapsed}' class="fill"></span>
     </div>
-    <p>{{ currentTrackName }}</p>
   </div>
 </footer>
-
-

@@ -16,7 +16,7 @@
        <div ng-show="playingSongComments == song.name">
          <form ng-submit="makeComment(song._id, songComment)">
            <input type="text" name="comment" placeholder="Comment Here" ng-model="songComment">
-           <input type="submit" value="Comment">
+           <button class='btn btn-default' type="submit">Comment</button>
          </form>
          <button type="button" class="btn btn-link" ng-click="showComments = !showComments">Show Comments</button>
          <div ng-show="showComments">
