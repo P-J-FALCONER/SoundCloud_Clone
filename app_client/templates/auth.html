@@ -32,6 +32,9 @@
       <div class='error' ng-message="pwconfirm">Make sure this matches the pw above.</div>
     </div>
   </div>
+  <div ng-if='error'>
+    {{ error }}
+  </div>
   <button class='btn btn-default' type="submit">Register</button>
 </form>
 <h1>Login</h1>

@@ -9,7 +9,7 @@ angular.module('soundcloud')
         $rootScope.$emit('authorized', {'user': user})
         $location.url('/stream')
       }).catch(function(err){
-        $scope.error = err
+        $scope.error = 'User email already exists, please login'
         console.log(err);
       })
     }
