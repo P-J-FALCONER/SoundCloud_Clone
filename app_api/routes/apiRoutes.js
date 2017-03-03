@@ -27,5 +27,6 @@ router.get('/artist/:id', contentController.getArtist);
 router.get('/artist/songs/:id', contentController.getArtistSongs);
 router.get('/artist/albums/:id', contentController.getArtistAlbums);
 router.post('/comment', contentController.comment);
+router.get('/comment', contentController.getComments);
 
 module.exports = router;

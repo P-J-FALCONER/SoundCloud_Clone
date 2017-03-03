@@ -1,12 +1,16 @@
 angular.module('soundcloud')
   .controller('streamCtrl', ['$scope','contentFactory', '$location','$cacheFactory','authFactory','$rootScope', function($scope, contentFactory, $location, $cacheFactory, authFactory, $rootScope){
     $scope.users = [];
-
     $scope.likeIndex = [];
+    $scope.showComments = false;
     contentFactory.getUsers().then(function(res){
       $scope.users = res.data
     })
+    contentFactory.getComments().then(function(response){
+      console.log(response.data);
+      $scope.comments = response.data
 
+    })
     $scope.follow = function(id, index){
       contentFactory.followUser(id).then(function(res){
         $scope.users.splice(index, 1);
@@ -79,3 +83,8 @@ angular.module('soundcloud')
       })
     }
   }])
+  .filter('secondsToDateTime', [function() {
+    return function(seconds) {
+        return new Date(1970, 0, 1).setSeconds(seconds);
+    };
+}])
