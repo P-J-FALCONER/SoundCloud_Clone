@@ -54,10 +54,17 @@ angular.module('soundcloud')
     $scope.makeComment = function(song_id, songComment){
       $rootScope.$emit('comment', true);
       var currentTime = $rootScope.$on('currentTime', function(event,data){
+        console.log('data received from music player',data)
         $scope.time=data;
         contentFactory.comment(song_id, songComment, $scope.time).then(function(response){
+          console.log('response from db',response)
+          console.log({user: $scope.user.username, timeInSong: $scope.time,comment: songComment, createdAt:Date()})
+          $scope.comments.push({user: $scope.user.username, timeInSong: $scope.time,comment: songComment, createdAt:Date()})
+          console.log($scope.comments)
         })
+        console.log('killing listener')
         currentTime();
+        console.log('killed listener')
       })
     }
 

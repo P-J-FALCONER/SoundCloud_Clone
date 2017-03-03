@@ -94,7 +94,9 @@
     }
 
     $rootScope.$on('comment', function(event, data){
+      console.log('emited Data to music player',data)
       if(data){
+        console.log('time of comment',$scope.seconds)
         $rootScope.$emit('currentTime', $scope.seconds);
       }
     })
@@ -152,6 +154,7 @@
       $scope.trackList = ($scope.trackList).concat(data.songs)
       $scope.trackNames = ($scope.trackNames).concat(data.names)
       $scope.currentTrackName = $scope.trackNames[$scope.currentIndex]
+
     });
 
     $rootScope.$on('addStream', function(event, data) {
@@ -161,6 +164,7 @@
       $scope.trackList = ($scope.trackList).concat(data.songs)
       $scope.trackNames = ($scope.trackNames).concat(data.names)
       $scope.currentTrackName = $scope.trackNames[$scope.currentIndex]
+      $rootScope.$emit('nextTrack', $scope.currentTrackName)
     });
 
     $rootScope.$on('trackPlay', function(event, data) {

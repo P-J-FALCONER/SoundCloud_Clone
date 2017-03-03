@@ -307,12 +307,13 @@ module.exports.comment = function(req, res){
   console.log('SONG--',req.body.song_id)
   console.log('comment--',req.body.comment)
   console.log('time--',req.body.time)
+  console.log('USER----', req.user._id)
 
     Comment.create({song:req.body.song_id, user:req.user._id, comment:req.body.comment,timeInSong:req.body.time}, function(err, comment){
       if(err){
         console.log(err);
       }else{
-        console.log(comment);
+        console.log('db response',comment);
         res.json(comment);
       }
     })
