@@ -45,9 +45,6 @@ node server.js
 ```
 
 ## To-Do
-  * update user profile image
-  * add fade confirm screen for deleting user
-  * add commenting functionality
   * add repost functionality
   * add repost data to user page
   * play song on artist page

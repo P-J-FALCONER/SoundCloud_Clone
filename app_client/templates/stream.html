@@ -28,7 +28,7 @@
                 </thead>
                 <tbody>
                   <tr ng-repeat="comment in comments | filter: song._id | orderBy: '-createdAt'">
-                    <td>{{comment.user.username}}</td>
+                    <td>{{comment.user.username || comment.username}}</td>
                     <td>{{comment.comment}}</td>
                     <td>{{comment.timeInSong | secondsToDateTime | date:'HH:mm:ss'}}</td>
                     <td>{{comment.createdAt | date: 'medium'}}</td>

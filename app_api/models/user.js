@@ -20,10 +20,6 @@ var UserSchema = new mongoose.Schema({
   facebook: {
     token: String
   },
-  // stationLikes: [{
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'Song'
-  // }],
   following: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
