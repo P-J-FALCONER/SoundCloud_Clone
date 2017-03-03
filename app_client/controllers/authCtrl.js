@@ -6,7 +6,7 @@ angular.module('soundcloud')
         email: $scope.email,
         password: $scope.password
       }).then(function(user){
-        $rootScope.$emit('authorized')
+        $rootScope.$emit('authorized', {'user': user})
         $location.url('/stream')
       }).catch(function(err){
         $scope.error = err
@@ -19,7 +19,7 @@ angular.module('soundcloud')
         email: $scope.login_email,
         password: $scope.login_password
       }).then(function(user){
-        $rootScope.$emit('authorized')
+        $rootScope.$emit('authorized', {'user': user})
         $location.url('/stream')
       }).catch(function(err){
         console.log(err);
