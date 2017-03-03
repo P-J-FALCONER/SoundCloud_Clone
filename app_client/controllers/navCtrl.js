@@ -42,9 +42,12 @@ angular.module('soundcloud')
     }
 
     var authorized = $rootScope.$on('authorized', function(event, data){
-      console.log('hit authorized listener');
-      console.log(data);
       $scope.authorizeUser(data.user);
       authorized();
+    })
+
+    var logout = $rootScope.$on('logout', function(event, data){
+      $scope.logout();
+      logout();
     })
   }]);

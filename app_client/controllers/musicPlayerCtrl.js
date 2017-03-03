@@ -93,13 +93,12 @@
       }, 1000))
     }
 
-    $rootScope.$on('comment', function(event, data){
-      console.log('emited Data to music player',data)
-      if(data){
-        console.log('time of comment',$scope.seconds)
-        $rootScope.$emit('currentTime', $scope.seconds);
-      }
-    })
+    $rootScope.$on('requestTime', function(event, data){
+      console.log(data);
+      console.log('time of comment',$scope.seconds)
+      data['seconds'] = $scope.seconds
+      $rootScope.$emit('currentTime', data);
+  })
 
     $scope.pause = function () {
       $scope.isPaused = true;

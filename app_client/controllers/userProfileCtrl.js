@@ -22,18 +22,6 @@ angular.module('soundcloud')
       var modalInstance = $uibModal.open({
         templateUrl: '/templates/deleteModal.html',
         controller: 'deleteModalCtrl'
-        // resolve : {
-        //   locationData : function () {
-        //     return {
-        //       locationid : vm.locationid,
-        //       locationName : vm.data.location.name
-        //     };
-        //   }
-        // }
-      });
-
-      modalInstance.result.then(function (data) {
-        $location.url('/')
       });
     };
   }])

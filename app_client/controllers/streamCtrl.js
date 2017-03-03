@@ -6,11 +6,12 @@ angular.module('soundcloud')
     contentFactory.getUsers().then(function(res){
       $scope.users = res.data
     })
+
     contentFactory.getComments().then(function(response){
       console.log(response.data);
       $scope.comments = response.data
-
     })
+
     $scope.follow = function(id, index){
       contentFactory.followUser(id).then(function(res){
         $scope.users.splice(index, 1);
@@ -52,21 +53,24 @@ angular.module('soundcloud')
     })
 
     $scope.makeComment = function(song_id, songComment){
-      $rootScope.$emit('comment', true);
-      var currentTime = $rootScope.$on('currentTime', function(event,data){
-        console.log('data received from music player',data)
-        $scope.time=data;
-        contentFactory.comment(song_id, songComment, $scope.time).then(function(response){
-          console.log('response from db',response)
-          console.log({user: $scope.user.username, timeInSong: $scope.time,comment: songComment, createdAt:Date()})
-          $scope.comments.push({user: $scope.user.username, timeInSong: $scope.time,comment: songComment, createdAt:Date()})
-          console.log($scope.comments)
-        })
-        console.log('killing listener')
-        currentTime();
-        console.log('killed listener')
-      })
+      $rootScope.$emit('requestTime', {
+        song_id: song_id,
+        songComment: songComment
+      });
     }
+
+    var currentTime = $rootScope.$on('currentTime', function(event,data){
+      console.log('data received from music player',data)
+      var time = data;
+      contentFactory.comment(time.song_id, time.songComment, time.seconds).then(function(response){
+        response.data.user.username = $scope.user.username
+        console.log(response.data);
+        $scope.comments.push(response.data)
+      })
+      console.log('killing listener')
+      currentTime();
+      console.log('killed listener')
+    })
 
     $rootScope.$on('nextTrack', function(event, data){
       $scope.playingSongComments = data
