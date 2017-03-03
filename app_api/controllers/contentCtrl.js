@@ -338,3 +338,13 @@ module.exports.addPlay = function(req, res){
     })
   })
 }
+
+module.exports.getComments = function(req, res){
+  Comment.find({}).populate('user').exec(function(err, comments){
+    if(err){
+      console.log(err);
+    }else{
+      res.json(comments)
+    }
+  })
+}

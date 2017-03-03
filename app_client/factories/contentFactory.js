@@ -55,6 +55,9 @@ angular.module('soundcloud')
       },
       addPlay: function(song_id){
         return $http.put('/api/songs/'+song_id, {})
+      },
+      getComments: function(){
+        return $http.get('/api/comment')
       }
     }
   }])

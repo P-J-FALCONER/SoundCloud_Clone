@@ -3,6 +3,7 @@
 <div style="margin-bottom: 5%;" ng-repeat="song in artist_songs">
   <img ng-src="{{ song.image }}" alt="Art" style="vertical-align: top;width: 10em;">
   <div style="display: inline-block;">
+    <span ng-click='repost()' class="glyphicon glyphicon-retweet" aria-hidden="true" style="font-size: 2em;"></span>
     <span class="glyphicon glyphicon-play" aria-hidden="true" style="font-size: 3em;"></span>
     <span ng-click="likeSong(song._id, $index)" ng-show = "song.userLikes.indexOf(user._id)==-1"class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="font-size: 1.5em;"></span>
     <p>{{ artist_name }}</p>

@@ -45,8 +45,10 @@ node server.js
 ```
 
 ## To-Do
-  <!--* update user profile image-->
+  * update user profile image
   * add fade confirm screen for deleting user
-  <!--* add commenting functionality-->
+  * add commenting functionality
   * add repost functionality
   * add repost data to user page
+  * play song on artist page
+  * https://www.patrick-wied.at/blog/how-to-create-audio-visualizations-with-javascript-html
