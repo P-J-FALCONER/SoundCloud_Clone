@@ -46,6 +46,7 @@ module.exports.addAudio = function(req, res){
     artist: req.user._id,
     name: req.body.name,
   }, function(err, song){
+    console.log(song._id);
     if(err){
       console.log(err);
       sendJSONResponse(res, 400, err)
@@ -67,15 +68,16 @@ module.exports.addAudio = function(req, res){
       // Change name of file already in audio folder
       var filename = req.files.file.path;
       var fileArr = filename.split('/');
+
       fileArr.pop();
       fileArr = fileArr.join('/');
       filename = fileArr + '/' + song._id + audioExt
+      console.log(filename);
       fs.rename(req.files.file.path, filename, function (writeErr) {
         if(writeErr){
           console.log(writeErr);
         }
       })
-
 
       if(req.body.image){
         // image, ext keys
@@ -84,12 +86,17 @@ module.exports.addAudio = function(req, res){
         fs.writeFile(path.join(__dirname, '/../../app_client/static/img/songs/', song._id + imageObj.ext), imageObj.image, "base64", function (writeErr) {
           song.image = 'static/img/songs/' + song._id + imageObj.ext
           song.audio = 'static/audio/' + song._id + audioExt
+          console.log(song.audio);
           song.save(function(err, song){
             sendJSONResponse(res, 201, song);
           })
         })
       } else {
-        sendJSONResponse(res, 200, song)
+        song.audio = 'static/audio/' + song._id + audioExt
+        console.log(song.audio);
+        song.save(function(err, song){
+          sendJSONResponse(res, 201, song);
+        })
       }
     }
   })

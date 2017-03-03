@@ -53,7 +53,6 @@
     $scope.play = function () {
       $scope.isPaused = false;
       contentFactory.addPlay($scope.song_ids[$scope.currentIndex]).then(function(updatedSong){
-        console.log('called');
         $rootScope.$emit('updateDOM', {
           index: $scope.currentIndex
         })
@@ -92,10 +91,10 @@
         }
       }, 1000))
     }
-    
+
     $rootScope.$on('comment', function(event, data){
       if(data){
-        $rootScope.$emit('currentTime', $scope.seconds); 
+        $rootScope.$emit('currentTime', $scope.seconds);
       }
     })
 
@@ -129,10 +128,36 @@
       }
     }
 
+    $scope.shaveList = function(){
+      console.log($scope.trackList, $scope.trackNames, $scope.song_ids);
+      if($scope.trackList.length > 0){
+        $scope.trackList = [$scope.trackList[0]]
+        $scope.trackNames = [$scope.trackNames[0]]
+        $scope.song_ids = [$scope.song_ids[0]]
+      } else {
+        $scope.trackList = []
+        $scope.trackNames = []
+        $scope.song_ids = []
+      }
+    }
+
     $rootScope.$on('addTop50', function(event, data) {
-      $scope.song_ids = data.song_ids
-      $scope.trackList = data.songs
-      $scope.trackNames = data.names
+      $scope.shaveList()
+      $scope.currentIndex = 0;
+      $scope.song_ids = ($scope.song_ids).concat(data.song_ids)
+      $scope.trackList = ($scope.trackList).concat(data.songs)
+      $scope.trackNames = ($scope.trackNames).concat(data.names)
+      console.log($scope.trackNames);
+      $scope.currentTrackName = $scope.trackNames[$scope.currentIndex]
+    });
+
+    $rootScope.$on('addStream', function(event, data) {
+      $scope.shaveList()
+      $scope.currentIndex = 0;
+      $scope.song_ids = ($scope.song_ids).concat(data.song_ids)
+      $scope.trackList = ($scope.trackList).concat(data.songs)
+      $scope.trackNames = ($scope.trackNames).concat(data.names)
+      console.log($scope.trackNames);
       $scope.currentTrackName = $scope.trackNames[$scope.currentIndex]
     });
 

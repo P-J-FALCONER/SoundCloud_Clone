@@ -1,21 +1,42 @@
 angular.module('soundcloud')
   .controller('streamCtrl', ['$scope','contentFactory', '$location','$cacheFactory','authFactory','$rootScope', function($scope, contentFactory, $location, $cacheFactory, authFactory, $rootScope){
     $scope.users = [];
+
     $scope.likeIndex = [];
     contentFactory.getUsers().then(function(res){
       $scope.users = res.data
     })
+
     $scope.follow = function(id, index){
       contentFactory.followUser(id).then(function(res){
         $scope.users.splice(index, 1);
       })
     }
+
     contentFactory.getStreamSongs().then(function(response){
       $scope.streamSongs= response.data
+
+      var trackPaths = [];
+      var songNames = [];
+      var song_ids = [];
+
+      for (var i = 0; i < $scope.streamSongs.length; i++) {
+        trackPaths.push($scope.streamSongs[i].audio)
+        songNames.push($scope.streamSongs[i].name);
+        song_ids.push($scope.streamSongs[i]._id);
+      }
+
+      $rootScope.$emit('addStream', {
+        songs: trackPaths,
+        names: songNames,
+        song_ids: song_ids
+      });
     })
+
     contentFactory.getStreamAlbums().then(function(response){
       $scope.streamAlbums= response.data
     })
+
     $scope.likeSong = function(song_id, index){
       contentFactory.likeSong(song_id).then(function(response){
         $scope.streamSongs[index].userLikes.push($scope.user._id);
@@ -26,7 +47,6 @@ angular.module('soundcloud')
       $scope.time= data.time;
     })
 
-
     $scope.makeComment = function(song_id, songComment){
       $rootScope.$emit('comment', true);
       var currentTime = $rootScope.$on('currentTime', function(event,data){
@@ -35,11 +55,18 @@ angular.module('soundcloud')
         })
         currentTime();
       })
-      
     }
+
+    $scope.play = function(song){
+      $rootScope.$emit('trackPlay', {
+        song: song
+      });
+    }
+
     if(angular.isUndefined($cacheFactory.get('userCache'))){
       $cacheFactory('userCache')
     }
+
     if($cacheFactory.get('userCache').get('user')){
       $scope.user = $cacheFactory.get('userCache').get('user');
     } else {

@@ -43,7 +43,7 @@ angular.module('soundcloud').run(function($rootScope, $location, authFactory, $c
         $cacheFactory.get('userCache').put('user', user.data);
       }
 
-      if ($location.path() === '/user' || $location.path() === '/upload'){
+      if ($location.path() === '/user' || $location.path() === '/upload' || $location.path() === '/stream' || $location.path() === '/collection'){
         if(user.data == ''){
           $location.path('/');
         }

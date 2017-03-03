@@ -6,6 +6,7 @@ angular.module('soundcloud')
        var trackPaths = [];
        var songNames = [];
        var song_ids = [];
+
        for (var i = 0; i < $scope.songs.length; i++) {
          trackPaths.push($scope.songs[i].audio)
          songNames.push($scope.songs[i].name);
@@ -23,8 +24,6 @@ angular.module('soundcloud')
          song: song
        });
        var update = $rootScope.$on('updateDOM', function(event, data){
-         console.log(data);
-         console.log($scope.songs[data.index]);
          $scope.songs[data.index].plays += 1;
          update()
        });

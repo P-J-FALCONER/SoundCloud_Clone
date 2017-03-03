@@ -8,7 +8,6 @@ angular.module('soundcloud')
     }
 
     $scope.authorizeUser = function(user){
-      console.log('in authorize function with ', user);
       if(user){
         $scope.user = user.data
         $cacheFactory.get('userCache').put('user', user.data)
