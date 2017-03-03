@@ -10,8 +10,8 @@
           <span ng-click="likeSong(song._id, $index)" ng-show = "song.userLikes.indexOf(user._id)==-1"class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="font-size: 1.5em;"></span>
           <p>{{song.artist.username}}</p>
           <p>{{song.name}}</p>
-          <form ng-submit="comment(song_id)">
-            <input type="text" name="comment" placeholder="Comment Here">
+          <form ng-submit="makeComment(song._id, songComment)">
+            <input type="text" name="comment" placeholder="Comment Here" ng-model="songComment">
             <input type="submit" value="Comment">
           </form>
         </div>

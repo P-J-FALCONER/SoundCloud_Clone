@@ -50,6 +50,9 @@ angular.module('soundcloud')
       getArtistAlbums: function(artist_id){
         return $http.get('/api/artist/albums/'+artist_id)
       },
+      comment: function(song_id, comment, time){
+          return $http.post('/api/comment', {song_id:song_id, comment:comment, time:time})
+      },
       addPlay: function(song_id){
         return $http.put('/api/songs/'+song_id, {})
       }

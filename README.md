@@ -45,13 +45,8 @@ node server.js
 ```
 
 ## To-Do
-  * update user profile image
+  <!--* update user profile image-->
   * add fade confirm screen for deleting user
-  * add commenting functionality
+  <!--* add commenting functionality-->
   * add repost functionality
-  * complete stream
-  * upload album
   * add repost data to user page
-  * have checkbox for uploading song vs album(multiple)
-  * create play increase functionality
-  * play song from body to music footer 

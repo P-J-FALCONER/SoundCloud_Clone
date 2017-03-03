@@ -1,6 +1,7 @@
 var User = require('../models/user.js')
 var Song = require('../models/song.js')
 var Album = require('../models/album.js')
+var Comment = require('../models/comment.js')
 var fs = require('fs')
 var path = require('path')
 
@@ -293,6 +294,21 @@ module.exports.getArtistAlbums = function(req, res){
       res.json(albums);
     }
   })
+}
+
+module.exports.comment = function(req, res){
+  console.log('SONG--',req.body.song_id)
+  console.log('comment--',req.body.comment)
+  console.log('time--',req.body.time)
+
+    Comment.create({song:req.body.song_id, user:req.user._id, comment:req.body.comment,timeInSong:req.body.time}, function(err, comment){
+      if(err){
+        console.log(err);
+      }else{
+        console.log(comment);
+        res.json(comment);
+      }
+    })
 }
 
 module.exports.addPlay = function(req, res){
