@@ -8,7 +8,6 @@ angular.module('soundcloud')
     })
 
     contentFactory.getComments().then(function(response){
-      console.log(response.data);
       $scope.comments = response.data
     })
 
@@ -60,16 +59,12 @@ angular.module('soundcloud')
     }
 
     var currentTime = $rootScope.$on('currentTime', function(event,data){
-      console.log('data received from music player',data)
       var time = data;
       contentFactory.comment(time.song_id, time.songComment, time.seconds).then(function(response){
-        response.data.user.username = $scope.user.username
-        console.log(response.data);
+        response.data.username = $scope.user.username
         $scope.comments.push(response.data)
       })
-      console.log('killing listener')
       currentTime();
-      console.log('killed listener')
     })
 
     $rootScope.$on('nextTrack', function(event, data){

@@ -94,8 +94,6 @@
     }
 
     $rootScope.$on('requestTime', function(event, data){
-      console.log(data);
-      console.log('time of comment',$scope.seconds)
       data['seconds'] = $scope.seconds
       $rootScope.$emit('currentTime', data);
   })
@@ -133,7 +131,6 @@
     }
 
     $scope.shaveList = function(){
-      console.log($scope.trackList, $scope.trackNames, $scope.song_ids);
       if($scope.trackList.length > 0){
         $scope.trackList = [$scope.trackList[$scope.currentIndex]]
         $scope.trackNames = [$scope.trackNames[$scope.currentIndex]]
