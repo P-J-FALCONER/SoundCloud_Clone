@@ -16,7 +16,9 @@ angular.module('soundcloud')
         $scope.users.splice(index, 1)
         contentFactory.getArtistSongs(id).then(function(response){
           console.log(response);
-          $scope.streamSongs.push(response.data)
+          for(var i = 0; i<response.data.length; i++){
+            $scope.streamSongs.push(response.data[i])
+          }
         })
       })
     }

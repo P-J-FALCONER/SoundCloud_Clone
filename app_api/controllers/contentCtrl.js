@@ -284,7 +284,7 @@ module.exports.getArtist = function(req, res){
 }
 
 module.exports.getArtistSongs = function(req, res){
-  Song.find({artist:req.params.id}, function(err, songs){
+  Song.find({artist:req.params.id}).populate('artist').exec(function(err, songs){
     if(err){
       console.log(err);
     }else{

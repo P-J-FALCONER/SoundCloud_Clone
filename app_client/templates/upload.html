@@ -1,7 +1,7 @@
 <h2>Upload to SoundCloud</h2>
 <form novalidate name="uploadForm" ng-submit='uploadForm.$valid && uploadFile(uploadForm)'>
   <div class="form-group">
-    <label>Name</label>
+    <label>Song Name:</label>
     <input type="text" ng-model="name" name="name" accept="image/*" value="" required>
     <div ng-if='uploadForm.$submitted' ng-messages="uploadForm.name.$error" multiple>
       <div class='error' ng-message="required">This field cannot be empty.</div>
