@@ -16,9 +16,13 @@
 .panel-body{
   text-align: center;
 }
-.panel-body img{
+.collection img{
   height: 70px !important;
   max-width: 120px !important;
+}
+.stream img{
+  max-height: 200px;
+  margin-bottom: 5px;
 }
 .panel{
    padding-right: 0px !important;
@@ -32,6 +36,9 @@
 }
 .dropdown-menu{
   right: auto !important;
+}
+.navbar-brand{
+  padding-right: 0px !important;
 }
 /*Spacing between navbar and footer music player*/
 body {

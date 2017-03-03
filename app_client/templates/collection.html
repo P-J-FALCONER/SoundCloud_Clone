@@ -4,13 +4,13 @@
     <div class="panel-heading">
       {{ song.name }}
     </div>
-    <div class="panel-body">
+    <div class="collection panel-body">
      <img ng-src="{{ song.image }}" alt = "Generic placeholder thumbnail">
      <h5><a href="/#!/artist/{{song.artist._id}}">{{ song.artist.username }}</a></h5>
-     <p>Some sample text. Some sample text.</p>
     </div>
   </div>
 </div>
+<br>
 <div>
   <h3>Following</h3>
   <!--ng-repeat over people user is following-->
