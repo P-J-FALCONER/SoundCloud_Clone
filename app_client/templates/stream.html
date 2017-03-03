@@ -4,9 +4,10 @@
       <div ng-repeat="song in streamSongs track by $index" class="thumbnail">
         <img ng-src="{{song.image}}" alt="Art" width="21%">
         <div style="display: inline-block;">
+          <span ng-click='repost()' class="glyphicon glyphicon-retweet" aria-hidden="true" style="font-size: 2em;"></span>
           <span ng-click='play(song)' class="glyphicon glyphicon-play" aria-hidden="true" style="font-size: 3em;"></span>
           <span ng-click="likeSong(song._id, $index)" ng-show = "song.userLikes.indexOf(user._id)==-1"class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="font-size: 1.5em;"></span>
-          <p>{{song.artist.username}}</p>
+          <p><a href="/#!/artist/{{song.artist._id}}">{{song.artist.username}}</a></p>
           <p>{{song.name}}</p>
           <form ng-submit="makeComment(song._id, songComment)">
             <input type="text" name="comment" placeholder="Comment Here" ng-model="songComment">

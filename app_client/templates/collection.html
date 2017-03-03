@@ -31,6 +31,6 @@
   <!--ng-repeat over people user is following-->
   <div style="display: inline-block;margin-right: 5%;" ng-repeat="follow in following">
     <img ng-src="{{ follow.image }}" class="img-circle" alt="following image" style="height: 10em;width: 10em;">
-    <h5 style="text-align: center;"><a href="">{{follow.username}}</a></h5>
+    <h5 style="text-align: center;"><a href="/#!/artist/{{follow._id}}">{{follow.username}}</a></h5>
   </div>
 </div>
