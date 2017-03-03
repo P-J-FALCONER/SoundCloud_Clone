@@ -3,49 +3,48 @@ angular.module('soundcloud')
     $scope.users = [];
     $scope.likeIndex = [];
     $scope.showComments = false;
-    contentFactory.getUsers().then(function(res){
-      $scope.users = res.data
-    })
 
-    contentFactory.getComments().then(function(response){
-      $scope.comments = response.data
-    })
+    $scope.init = function(){
+      contentFactory.getUsers().then(function(res){
+        $scope.users = res.data
+      })
+      contentFactory.getComments().then(function(response){
+        $scope.comments = response.data
+      })
+      contentFactory.getStreamSongs().then(function(response){
+        $scope.streamSongs= response.data
+
+        var trackPaths = [];
+        var songNames = [];
+        var song_ids = [];
+
+        for (var i = 0; i < $scope.streamSongs.length; i++) {
+          trackPaths.push($scope.streamSongs[i].audio)
+          songNames.push($scope.streamSongs[i].name);
+          song_ids.push($scope.streamSongs[i]._id);
+        }
+
+        $rootScope.$emit('addStream', {
+          songs: trackPaths,
+          names: songNames,
+          song_ids: song_ids
+        });
+      })
+    }
+
+    $scope.init()
+
 
     $scope.follow = function(id, index){
       contentFactory.followUser(id).then(function(res){
         $scope.users.splice(index, 1)
         contentFactory.getArtistSongs(id).then(function(response){
-          console.log(response);
-          for(var i = 0; i<response.data.length; i++){
-            $scope.streamSongs.push(response.data[i])
-          }
+          $scope.init();
         })
       })
     }
 
-    contentFactory.getStreamSongs().then(function(response){
-      $scope.streamSongs= response.data
 
-      var trackPaths = [];
-      var songNames = [];
-      var song_ids = [];
-
-      for (var i = 0; i < $scope.streamSongs.length; i++) {
-        trackPaths.push($scope.streamSongs[i].audio)
-        songNames.push($scope.streamSongs[i].name);
-        song_ids.push($scope.streamSongs[i]._id);
-      }
-
-      $rootScope.$emit('addStream', {
-        songs: trackPaths,
-        names: songNames,
-        song_ids: song_ids
-      });
-    })
-
-    contentFactory.getStreamAlbums().then(function(response){
-      $scope.streamAlbums= response.data
-    })
 
     $scope.likeSong = function(song_id, index){
       contentFactory.likeSong(song_id).then(function(response){
@@ -62,6 +61,7 @@ angular.module('soundcloud')
         song_id: song_id,
         songComment: songComment
       });
+      $scope.showComments = true;
     }
 
     var currentTime = $rootScope.$on('currentTime', function(event,data){
