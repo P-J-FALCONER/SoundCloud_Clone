@@ -50,4 +50,27 @@ angular.module('soundcloud')
         console.log(err);
       })
     }
+    contentFactory.getComments().then(function(response){
+      $scope.comments = response.data
+    })
+    $scope.makeComment = function(song_id, songComment){
+      $rootScope.$emit('requestTime', {
+        song_id: song_id,
+        songComment: songComment
+      });
+    }
+
+    var currentTime = $rootScope.$on('currentTime', function(event,data){
+      var time = data;
+      contentFactory.comment(time.song_id, time.songComment, time.seconds).then(function(response){
+        response.data.username = $scope.user.username
+        $scope.comments.push(response.data)
+      })
+      currentTime();
+    })
   }])
+  .filter('secondsToDateTime', [function() {
+    return function(seconds) {
+        return new Date(1970, 0, 1).setSeconds(seconds);
+    };
+}])

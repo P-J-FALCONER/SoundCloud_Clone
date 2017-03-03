@@ -121,3 +121,6 @@ body {
 #logoName {
     font-family: 'Baloo', cursive;
 }
+th{
+  text-align: center;
+}
