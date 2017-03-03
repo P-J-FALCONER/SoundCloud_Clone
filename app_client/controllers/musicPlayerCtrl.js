@@ -163,6 +163,16 @@
       $rootScope.$emit('nextTrack', $scope.currentTrackName)
     });
 
+    $rootScope.$on('addArtistSongs', function(event, data) {
+      $scope.shaveList()
+      $scope.currentIndex = 0;
+      $scope.song_ids = ($scope.song_ids).concat(data.song_ids)
+      $scope.trackList = ($scope.trackList).concat(data.songs)
+      $scope.trackNames = ($scope.trackNames).concat(data.names)
+      $scope.currentTrackName = $scope.trackNames[$scope.currentIndex]
+      $rootScope.$emit('nextTrack', $scope.currentTrackName)
+    });
+
     $rootScope.$on('trackPlay', function(event, data) {
       $scope.reset();
       var trackIndex = $scope.trackList.indexOf(data.song.audio);
