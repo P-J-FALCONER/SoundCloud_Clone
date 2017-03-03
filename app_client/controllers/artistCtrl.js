@@ -1,5 +1,5 @@
 angular.module('soundcloud')
-  .controller('artistCtrl', ['$scope','contentFactory', '$location','$routeParams','$cacheFactory','authFactory', function($scope, contentFactory, $location, $routeParams, $cacheFactory, authFactory){
+  .controller('artistCtrl', ['$scope', '$rootScope', 'contentFactory', '$location','$routeParams','$cacheFactory','authFactory', function($scope, $rootScope, contentFactory, $location, $routeParams, $cacheFactory, authFactory){
     $scope.artist_id = $routeParams.id;
     $scope.artist_songs = [];
     $scope.artist_albums = [];
@@ -10,7 +10,24 @@ angular.module('soundcloud')
     })
     contentFactory.getArtistSongs($scope.artist_id).then(function(response){
       $scope.artist_songs = response.data;
+
+      var trackPaths = [];
+      var songNames = [];
+      var song_ids = [];
+
+      for (var i = 0; i < $scope.artist_songs.length; i++) {
+        trackPaths.push($scope.artist_songs[i].audio)
+        songNames.push($scope.artist_songs[i].name);
+        song_ids.push($scope.artist_songs[i]._id);
+      }
+
+      $rootScope.$emit('addArtistSongs', {
+        songs: trackPaths,
+        names: songNames,
+        song_ids: song_ids
+      });
     })
+
     contentFactory.getArtistAlbums($scope.artist_id).then(function(response){
       $scope.artist_albums = response.data;
     })

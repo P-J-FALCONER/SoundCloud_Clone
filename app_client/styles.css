@@ -22,6 +22,7 @@
 }
 .stream img{
   max-height: 200px;
+  max-width: 300px;
   margin-bottom: 5px;
 }
 .panel{
@@ -39,6 +40,10 @@
 }
 .navbar-brand{
   padding-right: 0px !important;
+}
+.commentTd{
+  width:30%;
+  min-width:300px;
 }
 /*Spacing between navbar and footer music player*/
 body {
@@ -97,12 +102,14 @@ body {
   background: yellow;
   width: 0%;
 }
+.sidebar{
+  text-align: center;
+}
 @media screen and (max-width: 800px){
   .links a .glyphicon{
     font-size: 12px;
   }
-  .playbar{
-  }
+
 }
 
 #logoName {
