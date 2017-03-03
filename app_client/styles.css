@@ -35,6 +35,9 @@
    padding-right: 0px !important;
    padding-left: 0px !important;
 }
+.row{
+  margin: 0 auto;
+}
 /* NAVBAR */
 .userImg{
   height: 30px;
