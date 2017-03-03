@@ -7,6 +7,7 @@ var path = require('path')
 var multipartMiddleware = multipart({ uploadDir: path.join(__dirname, '..', '..', 'app_client', 'static', 'audio') });
 
 router.get('/user', authController.getCurrentUser);
+router.put('/user', contentController.updateUserImage);
 router.delete('/user', authController.logout);
 
 router.get('/user/following', contentController.getFollowing);

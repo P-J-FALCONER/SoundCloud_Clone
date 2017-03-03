@@ -9,6 +9,33 @@ function sendJSONResponse(res, status, data){
   res.json(data);
 }
 
+function assignImage(uploadedImage){
+  var image;
+  var split = uploadedImage.split(",");
+  var ext;
+
+  if(split[0] == 'data:image/png;base64'){
+    ext = '.png';
+  } else if(split[0] == 'data:image/jpg;base64'){
+    ext = '.jpg';
+  } else if(split[0] == 'data:image/jpeg;base64'){
+    ext = '.jpeg'
+  } else if (split[0] == 'data:image/bmp;base64'){
+    ext = '.bmp'
+  }
+
+  if (split.length === 1) {
+      image = split[0];
+  } else {
+      image = split[1];
+  }
+
+  return {
+    image: image,
+    ext: ext
+  }
+}
+
 module.exports.addAudio = function(req, res){
   // if(!req.user._id){
   //   sendJSONResponse(res, 400, 'Please log in on our site.')
@@ -48,28 +75,13 @@ module.exports.addAudio = function(req, res){
         }
       })
 
+
       if(req.body.image){
-        var split = req.body.image.split(",");
-        var ext;
+        // image, ext keys
+        var imageObj = assignImage(req.body.image)
 
-        if(split[0] == 'data:image/png;base64'){
-          ext = '.png';
-        } else if(split[0] == 'data:image/jpg;base64'){
-          ext = '.jpg';
-        } else if(split[0] == 'data:image/jpeg;base64'){
-          ext = '.jpeg'
-        } else if (split[0] == 'data:image/bmp;base64'){
-          ext = '.bmp'
-        }
-
-        if (split.length === 1) {
-            image = split[0];
-        } else {
-            image = split[1];
-        }
-
-        fs.writeFile(path.join(__dirname, '/../../app_client/static/img/songs/', song._id + ext), image, "base64", function (writeErr) {
-          song.image = 'static/img/songs/' + song._id + ext
+        fs.writeFile(path.join(__dirname, '/../../app_client/static/img/songs/', song._id + imageObj.ext), imageObj.image, "base64", function (writeErr) {
+          song.image = 'static/img/songs/' + song._id + imageObj.ext
           song.audio = 'static/audio/' + song._id + audioExt
           song.save(function(err, song){
             sendJSONResponse(res, 201, song);
@@ -149,6 +161,38 @@ module.exports.getAggregates = function(req, res){
 module.exports.deleteUser = function(req, res){
   User.findByIdAndRemove(req.user._id, function(removed){
     res.json(removed)
+  })
+}
+
+module.exports.updateUserImage = function(req, res){
+  User.findOne({_id: req.user._id}, function(err, user){
+    if(err){
+      console.log(err);
+      return sendJSONResponse(res, 400, err)
+    }
+    if(!user){
+      return sendJSONResponse(res, 404, 'No user')
+    }
+    var imageObj = assignImage(req.body.image)
+
+    var possibleImgPath = path.join(__dirname, '/../../app_client/static/img/users/' + user.id + imageObj.ext)
+    fs.exists(possibleImgPath, function(exists) {
+      if(exists) {
+        console.log('File exists. Deleting now ...');
+        fs.unlink(possibleImgPath);
+      } else {
+        console.log('File not found, so not deleting.');
+      }
+      var imageObj = assignImage(req.body.image);
+
+      fs.writeFile(path.join(__dirname, '/../../app_client/static/img/users/', user._id + imageObj.ext), imageObj.image, "base64", function (writeErr) {
+        user.image = 'static/img/users/' + user._id + imageObj.ext
+        user.save(function(err, user){
+          sendJSONResponse(res, 201, user);
+        })
+      })
+    })
+    user.image = req.body.image
   })
 }
 

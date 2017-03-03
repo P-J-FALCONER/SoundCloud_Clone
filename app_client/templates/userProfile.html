@@ -40,9 +40,15 @@
   </div>
   <div>
     <h2>Update Profile Image</h2>
-    <form>
-      <label>Picture</label>
-      <input type="file" fileread='image' ng-model='image' name="image" accept="image/*">
+    <form novalidate name="uploadForm" ng-submit='uploadForm.$valid && updateUserImage()'>
+      <div class="form-group">
+        <label>Picture</label>
+        <input type="file" fileread='image' ng-model='image' name="image" accept="image/*">
+        <div ng-if='uploadForm.$dirty' ng-messages="uploadForm.image.$error" multiple>
+          <div class='error' ng-message="accept">This field must be an image file.</div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success">Update</button>
     </form>
     <h2>Delete User</h2>
     <button type="button" class="btn btn-danger" ng-click="delete()">Delete User</button>

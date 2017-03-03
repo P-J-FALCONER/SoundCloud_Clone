@@ -4,6 +4,10 @@ angular.module('soundcloud')
       getCurrentUser: function(){
         return $http.get('/api/user');
       },
+      updateUserImage: function(image){
+        console.log(image);
+        return $http.put('/api/user', image);
+      },
       getSongs:function(){
         return $http.get('/api/songs')
       },

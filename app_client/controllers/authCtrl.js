@@ -1,11 +1,12 @@
 angular.module('soundcloud')
-  .controller('authCtrl', ['$scope', '$cacheFactory', 'authFactory', '$location', function($scope, $cacheFactory, authFactory, $location){
+  .controller('authCtrl', ['$scope', '$rootScope', '$cacheFactory', 'authFactory', '$location', function($scope, $rootScope, $cacheFactory, authFactory, $location){
     $scope.register = function(){
       authFactory.register({
         username: $scope.username,
         email: $scope.email,
         password: $scope.password
       }).then(function(user){
+        $rootScope.$emit('authorized')
         $location.url('/stream')
       }).catch(function(err){
         $scope.error = err
@@ -18,6 +19,7 @@ angular.module('soundcloud')
         email: $scope.login_email,
         password: $scope.login_password
       }).then(function(user){
+        $rootScope.$emit('authorized')
         $location.url('/stream')
       }).catch(function(err){
         console.log(err);
