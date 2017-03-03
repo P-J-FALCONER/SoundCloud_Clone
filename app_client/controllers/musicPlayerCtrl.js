@@ -170,6 +170,7 @@
       $scope.trackList = ($scope.trackList).concat(data.songs)
       $scope.trackNames = ($scope.trackNames).concat(data.names)
       $scope.currentTrackName = $scope.trackNames[$scope.currentIndex]
+      console.log($scope.trackList);
       $rootScope.$emit('nextTrack', $scope.currentTrackName)
     });
 

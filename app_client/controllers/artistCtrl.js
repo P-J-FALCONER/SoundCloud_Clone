@@ -28,6 +28,13 @@ angular.module('soundcloud')
       });
     })
 
+    $scope.play = function(song){
+      $scope.playingSongComments = song.name
+      $rootScope.$emit('trackPlay', {
+        song: song
+      });
+    }
+
     contentFactory.getArtistAlbums($scope.artist_id).then(function(response){
       $scope.artist_albums = response.data;
     })
