@@ -1,3 +1,10 @@
-<h1>Are you sure?</h1>
-<button ng-click='deleteUser()'>Do it</button>
-<button ng-click='modal.close()'>Don't it</button>
+<div class="modal-content">
+  <div class="modal-header">
+    <h1>Are you sure?</h1>
+  </div>
+  <div class="modal-body">
+    <button class='btn btn-danger' ng-click='deleteUser()'>Delete</button>
+    <button class='btn btn-default' ng-click='modal.close()'>Exit</button>
+  </div>
+  <div class="modal-footer"></div>
+</div>
