@@ -80,6 +80,7 @@
           }
           $scope.currentIndex++;
           $scope.currentTrackName = $scope.trackNames[$scope.currentIndex]
+          $rootScope.$emit('nextTrack', $scope.currentTrackName)
           if(audioFactory.duration < $scope.seconds){
             $scope.reset()
             if($scope.trackList.length > $scope.currentIndex){
@@ -113,6 +114,7 @@
         console.log('executed');
         $scope.currentIndex--;
         $scope.currentTrackName = $scope.trackNames[$scope.currentIndex]
+        $rootScope.$emit('nextTrack', $scope.currentTrackName)
         $scope.play();
       }
     }
@@ -124,6 +126,7 @@
       if ($scope.currentIndex < $scope.trackList.length - 1) {
         $scope.currentIndex++;
         $scope.currentTrackName = $scope.trackNames[$scope.currentIndex]
+        $rootScope.$emit('nextTrack', $scope.currentTrackName)
         $scope.play();
       }
     }
