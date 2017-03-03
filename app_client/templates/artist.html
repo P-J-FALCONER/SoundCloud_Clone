@@ -18,19 +18,3 @@
   <h4>Artist Has No Songs</h4>
 </div>
 
-<h3>Albums</h3>
-<div style="margin-bottom: 5%;"ng-repeat="album in artist_albums">
-  <img ng-src="{{ album.image }}" alt="Art" style="vertical-align: top;width: 10em;">
-  <div style="display: inline-block;">
-    <span class="glyphicon glyphicon-play" aria-hidden="true" style="font-size: 3em;"></span>
-    <p>{{ artist_name }}</p>
-    <p>{{ album.name }}</p>
-    <form ng-submit="comment(album._id)">
-      <input type="text" name="comment" placeholder="Comment Here">
-      <input type="submit" value="Comment">
-    </form>
-  </div>
-</div>
-<div class="thumbnail" ng-show="artist_albums.length==0">
-  <h4>Artist Has No Albums</h4>
-</div>

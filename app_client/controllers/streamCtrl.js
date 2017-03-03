@@ -13,7 +13,11 @@ angular.module('soundcloud')
 
     $scope.follow = function(id, index){
       contentFactory.followUser(id).then(function(res){
-        $scope.users.splice(index, 1);
+        $scope.users.splice(index, 1)
+        contentFactory.getArtistSongs(id).then(function(response){
+          console.log(response);
+          $scope.streamSongs.push(response.data)
+        })
       })
     }
 
