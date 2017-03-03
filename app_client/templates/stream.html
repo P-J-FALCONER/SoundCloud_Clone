@@ -1,6 +1,7 @@
 <h2>Stream</h2>
 <div class="row">
   <div style="margin-bottom: 5%;" class="col-sm-9">
+    <div ng-if="streamSongs.length == 0">Check out the user tab to the right in order to add some songs!</div>
     <div ng-repeat="song in streamSongs track by $index" class="panel panel-default col-xs-12">
       <div class="panel-heading">
         {{ song.name }}
