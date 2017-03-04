@@ -94,9 +94,10 @@
     }
 
     $rootScope.$on('requestTime', function(event, data){
+      console.log(data);
       data['seconds'] = $scope.seconds
       $rootScope.$emit('currentTime', data);
-  })
+    })
 
     $scope.pause = function () {
       $scope.isPaused = true;

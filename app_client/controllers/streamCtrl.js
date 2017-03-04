@@ -57,6 +57,7 @@ angular.module('soundcloud')
     })
 
     $scope.makeComment = function(song_id, songComment){
+      console.log('in make comment');
       $rootScope.$emit('requestTime', {
         song_id: song_id,
         songComment: songComment
@@ -64,13 +65,12 @@ angular.module('soundcloud')
       $scope.showComments = true;
     }
 
-    var currentTime = $rootScope.$on('currentTime', function(event,data){
+    $rootScope.$on('currentTime', function(event,data){
       var time = data;
       contentFactory.comment(time.song_id, time.songComment, time.seconds).then(function(response){
         response.data.username = $scope.user.username
         $scope.comments.push(response.data)
       })
-      currentTime();
     })
 
     $rootScope.$on('nextTrack', function(event, data){
