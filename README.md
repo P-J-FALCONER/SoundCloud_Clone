@@ -46,9 +46,3 @@ npm install
 bower install
 node server.js
 ```
-
-## To-Do
-  * add repost functionality
-  * add repost data to user page
-  * play song on artist page
-  * https://www.patrick-wied.at/blog/how-to-create-audio-visualizations-with-javascript-html
