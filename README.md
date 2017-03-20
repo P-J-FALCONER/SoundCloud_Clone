@@ -3,7 +3,7 @@
   * MEAN stack
   * OAuth
   * Passport
-### This project is a clone of Soundcloud and using the MEAN Stack. It was created from start to finish in 5 days.
+### This project is a clone of Soundcloud and using the MEAN Stack. It was created from start to finish in 5 days. See it live at http://54.226.129.136/
 ## Authors
   * [Patrick Falconer](https://github.com/P-J-FALCONER)
   * [Nick Phillips](https://github.com/phillipn)
