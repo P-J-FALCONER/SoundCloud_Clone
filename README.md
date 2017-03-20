@@ -1,5 +1,8 @@
 # SoundCloud Clone (LoudCloud) <img src="https://github.com/P-J-FALCONER/SoundCloud_Clone/blob/master/app_client/static/img/LoudCloud.jpg" alt="alt text" width="250" height="200">
-## About
+## Technologies
+  * MEAN stack
+  * OAuth
+  * Passport
 ### This project is a clone of Soundcloud and using the MEAN Stack. It was created from start to finish in 5 days.
 ## Authors
   * [Patrick Falconer](https://github.com/P-J-FALCONER)
@@ -27,7 +30,7 @@
     "passport-local": "^1.0.0"
   ```
   ```
-  Bower Dependencies: 
+  Bower Dependencies:
     "angular": "^1.6.2",
     "angular-route": "^1.6.2",
     "angular-bootstrap": "^2.5.0",
