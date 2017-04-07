@@ -9,7 +9,7 @@
       <div class="stream panel-body">
        <img ng-src="{{ song.image }}" alt = "Generic placeholder thumbnail">
        <br>
-       <button ng-click='play(song)' class='btn btn-success'>Run dat track <span class="glyphicon glyphicon-play" aria-hidden="true" style="font-size: 1em;"></span></button>
+       <button ng-click='play(song)' class='btn btn-success'>Play Song<span class="glyphicon glyphicon-play" aria-hidden="true" style="font-size: 1em;"></span></button>
        <button ng-click="likeSong(song._id, $index)" ng-show = "song.userLikes.indexOf(user._id)==-1" class='btn btn-primary'>
          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="font-size: 1em;"></span>
        </button>
