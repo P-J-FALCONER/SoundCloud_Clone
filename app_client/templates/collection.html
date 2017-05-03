@@ -5,7 +5,7 @@
     <div class="collection panel-body">
      <img ng-src="{{ song.image }}" alt ="Generic placeholder thumbnail">
      <h5>
-       <a href="/#!/artist/{{song.artist._id}}">{{ song.artist.username }}</a>
+       <a href="/#!/artist/{{song.artist._id}}">Artist: {{ song.artist.username }}</a>
      </h5>
     </div>
   </div>
@@ -16,9 +16,17 @@
 </div>
 <div ng-show="liked_songs.length == 0"class="thumbnail"><h4>You Have No Liked Songs</h4></div>
 <div class="col-xs-12">
-  <h3>Following</h3>
-  <div ng-repeat="follow in following">
-    <img ng-src="{{ follow.image }}" class="img-circle" alt="following image" style="height: 7em;width: 7em;">
-    <h5><a href="/#!/artist/{{follow._id}}">{{follow.username}}</a></h5>
+  <h3>Artists You Follow</h3>
+  <div class="row">
+
   </div>
-</div>
+  <div ng-repeat="follow in following">
+    <div class="col-sm-4 col-md-3">
+    <div class="thumbnail">
+      <img ng-src="{{ follow.image }}" class="img-circle" alt="following image" style="height: 7em;width: 7em;">
+      <div class="caption">
+        <h5 class="text-center"><a href="/#!/artist/{{follow._id}}">{{follow.username}}</a></h5>
+      </div>
+    </div>
+  </div>
+  </div>
